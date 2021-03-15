@@ -10,7 +10,7 @@ int orderByDate(const void *a, const void *b) {
 
     if(data1->dataConclusao > data2->dataConclusao) return +1;
     if(data1->dataConclusao == data2->dataConclusao) {
-        if(data1->prioridade > data2->prioridade) return -1
+        if(data1->prioridade > data2->prioridade) return -1;
         else return +1;
     }
     return -1;
@@ -22,7 +22,7 @@ int orderByName(const void *a, const void *b) {
 
     if(strcmp(name1->pessoa,name2->pessoa) > 0) return -1;
     if(strcmp(name1->pessoa,name2->pessoa) == 0) {
-        if(name1->prioridade > name2->prioridade) return -1
+        if(name1->prioridade > name2->prioridade) return -1;
         else return +1;
     }
     return +1;
