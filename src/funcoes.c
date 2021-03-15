@@ -33,7 +33,7 @@ int orderByPriority(const void *a, const void *b) {
     Tarefa *priority2 = (Tarefa *)b;
 
     if(priority1->prioridade > priority2->prioridade) return -1;
-    if(prioity1->prioridade == prioity2->prioridade) {
+    if(priority1->prioridade == priority2->prioridade) {
         if(priority1->id > priority2->id) return -1;
         else return +1;
     }
