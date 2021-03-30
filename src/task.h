@@ -7,5 +7,5 @@ typedef struct tarefa{
     int dataCriacao;
     int dataLimite;
     int dataConclusao;
-    struct Tarefa* next;
+    struct TAREFA *next;
 }TAREFA;

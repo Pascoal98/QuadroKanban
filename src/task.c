@@ -23,6 +23,7 @@ TAREFA *newTaskID(int id, int fase) {
     a->fase = fase;
     a->id = id;
     a->prioridade = prioridade;
+    a->next = NULL;
 
     return a;
 }
