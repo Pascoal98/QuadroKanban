@@ -6,11 +6,6 @@
 
 int idCounter = 0; // contador ID global
 
-TAREFA *newTask(int fase) {
-
-    return newTaskID(idCounter++,fase);
-}
-
 TAREFA *newTaskID(int id, int fase) {
 
     TAREFA *a = (TAREFA*)malloc(sizeof(TAREFA));
@@ -26,6 +21,11 @@ TAREFA *newTaskID(int id, int fase) {
     a->next = NULL;
 
     return a;
+}
+
+TAREFA *newTask(int fase) {
+
+    return newTaskID(idCounter++,fase);
 }
 
 /*

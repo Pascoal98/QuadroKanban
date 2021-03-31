@@ -2,7 +2,6 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "task.h"
 #include "done.h"
 
 DONE *addDoneTask(TAREFA *a) {
@@ -11,8 +10,8 @@ DONE *addDoneTask(TAREFA *a) {
     if(b == NULL)
         fprintf(stderr, "Can't allocate memory for the task\n");
     
-    *b->doNEID = a->id;
-    *b->dataConclusao = a->dataConclusao;
-    *b->nextDoNE = NULL;
-    return *b;
+    b->doneID = a->id;
+    b->dataConclusao = a->dataConclusao;
+    b->nextDone = NULL;
+    return b;
 }
