@@ -8,7 +8,7 @@ TODO *addToDoTask(TAREFA *a) {
 
     TODO *b = (TODO*)malloc(sizeof(TODO));
     if(b == NULL)
-        fprintf(stderr, "Can't allocate memory for the task\n");
+        printf("Can't allocate memory for the task\n");
     
     b->todoID = a->id;
     b->prio = a->prioridade;

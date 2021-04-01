@@ -8,7 +8,7 @@ DOING *addDoingTask(TAREFA *a) {
 
     DOING *b = (DOING*)malloc(sizeof(DOING));
     if(b == NULL)
-        fprintf(stderr, "Can't allocate memory for the task\n");
+        printf("Can't allocate memory for the task\n");
     
     b->doingID = a->id;
     b->nomePessoa[20] = a->pessoa[20];

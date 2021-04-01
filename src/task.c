@@ -17,11 +17,11 @@ void printList(TAREFA *head_ref) {
     }
 }
 
-TAREFA *newTaskID(TAREFA **head_ref,int fase) {
+TAREFA *newTask(TAREFA **head_ref,int fase) {
 
     TAREFA *a = (TAREFA*)malloc(sizeof(TAREFA));
     if(a == NULL)
-        fprintf(stderr, "Can't allocate memory for the task\n");
+        printf("Can't allocate memory for the task\n");
     
     int prioridade;
     scanf("%d",&prioridade);

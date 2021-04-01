@@ -14,4 +14,4 @@ void printScreen();
 
 void printList(TAREFA *head_ref);
 
-TAREFA *newTaskID(TAREFA **head_ref,int fase);
+TAREFA *newTask(TAREFA **head_ref,int fase);

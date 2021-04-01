@@ -8,7 +8,7 @@ DONE *addDoneTask(TAREFA *a) {
 
     DONE *b = (DONE*)malloc(sizeof(DONE));
     if(b == NULL)
-        fprintf(stderr, "Can't allocate memory for the task\n");
+        printf("Can't allocate memory for the task\n");
     
     b->doneID = a->id;
     b->dataConclusao = a->dataConclusao;

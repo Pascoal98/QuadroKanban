@@ -7,8 +7,8 @@ int main() {
 
     TAREFA *head = NULL;
     //printScreen();
-    newTaskID(&head,0);
-    newTaskID(&head,0);
-    newTaskID(&head,0);
+    newTask(&head,0);
+    newTask(&head,0);
+    newTask(&head,0);
     printList(head);
 }
