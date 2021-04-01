@@ -4,5 +4,11 @@
 #include "task.h"
 
 int main() {
-    printScreen();
+
+    TAREFA *head = NULL;
+    //printScreen();
+    newTaskID(&head,0);
+    newTaskID(&head,0);
+    newTaskID(&head,0);
+    printList(head);
 }

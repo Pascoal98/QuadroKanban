@@ -10,5 +10,8 @@ typedef struct tarefa{
     struct tarefa *next;
 }TAREFA;
 
-
 void printScreen();
+
+void printList(TAREFA *head_ref);
+
+TAREFA *newTaskID(TAREFA **head_ref,int fase);

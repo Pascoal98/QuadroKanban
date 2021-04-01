@@ -6,7 +6,18 @@
 
 int idCounter = 0; // contador ID global
 
-TAREFA *newTaskID(int id, int fase) {
+//struct TAREFA *current = NULL;
+
+void printList(TAREFA *head_ref) {
+    TAREFA *temp = head_ref;
+
+    while(temp != NULL) {
+        printf("id = %d \nfase = %d \nprioridade = %d \n",temp->id , temp->fase, temp->prioridade);
+        temp = temp->next;
+    }
+}
+
+TAREFA *newTaskID(TAREFA **head_ref,int fase) {
 
     TAREFA *a = (TAREFA*)malloc(sizeof(TAREFA));
     if(a == NULL)
@@ -16,17 +27,25 @@ TAREFA *newTaskID(int id, int fase) {
     scanf("%d",&prioridade);
 
     a->fase = fase;
-    a->id = id;
+    a->id = idCounter;
+    idCounter++;
     a->prioridade = prioridade;
     a->next = NULL;
+    //printf("%d %d %d\n",a->fase,a->id,a->prioridade);
+
+    if(*head_ref == NULL) {
+        *head_ref = a;
+    } else {
+        TAREFA *lastTask = *head_ref;
+
+        while(lastTask->next != NULL) 
+            lastTask = lastTask->next;
+        lastTask->next = a;
+    }
 
     return a;
 }
 
-TAREFA *newTask(int fase) {
-
-    return newTaskID(idCounter++,fase);
-}
 
 /*
 int orderByDate(const void *a, const void *b) {
