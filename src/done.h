@@ -2,7 +2,7 @@
 
 typedef struct done{
     
-    TAREFA *doneID; //ID da tarefa overall para nao perder de vista
-    TAREFA *dataConclusao;
+    int *doneID; //ID da tarefa overall para nao perder de vista
+    int *dataConclusao;
     struct DONE *nextDone;
 }DONE;

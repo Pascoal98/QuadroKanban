@@ -10,9 +10,9 @@ DOING *addDoingTask(TAREFA *a) {
     if(b == NULL)
         printf("Can't allocate memory for the task\n");
     
-    b->doingID = a->id;
-    b->nomePessoa[20] = a->pessoa[20];
-    b->dataLimite = a->dataLimite;
+    b->doingID = &a->id;
+    b->nomePessoa[20] = &a->pessoa[20];
+    b->dataLimite = &a->dataLimite;
     b->nextDoing = NULL;
     return b;
 }

@@ -10,8 +10,8 @@ DONE *addDoneTask(TAREFA *a) {
     if(b == NULL)
         printf("Can't allocate memory for the task\n");
     
-    b->doneID = a->id;
-    b->dataConclusao = a->dataConclusao;
+    b->doneID = &a->id;
+    b->dataConclusao = &a->dataConclusao;
     b->nextDone = NULL;
     return b;
 }

@@ -10,9 +10,9 @@ TODO *addToDoTask(TAREFA *a) {
     if(b == NULL)
         printf("Can't allocate memory for the task\n");
     
-    b->todoID = a->id;
-    b->prio = a->prioridade;
-    b->dataCriacao = a->dataCriacao;
+    b->todoID = &a->id;
+    b->prio = &a->prioridade;
+    b->dataCriacao = &a->dataCriacao;
     b->nextTodo = NULL;
     return b;
 }

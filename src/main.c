@@ -3,10 +3,11 @@
 
 #include "task.h"
 
+
 int main() {
 
     TAREFA *head = NULL;
-    //printScreen();
+    printScreen();
     newTask(&head,0);
     newTask(&head,0);
     newTask(&head,0);

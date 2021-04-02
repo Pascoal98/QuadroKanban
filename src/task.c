@@ -6,8 +6,6 @@
 
 int idCounter = 0; // contador ID global
 
-//struct TAREFA *current = NULL;
-
 void printList(TAREFA *head_ref) {
     TAREFA *temp = head_ref;
 
@@ -24,6 +22,7 @@ TAREFA *newTask(TAREFA **head_ref,int fase) {
         printf("Can't allocate memory for the task\n");
     
     int prioridade;
+    printf("Qual é a prioridade desta tarefa?\n");
     scanf("%d",&prioridade);
 
     a->fase = fase;
@@ -31,7 +30,6 @@ TAREFA *newTask(TAREFA **head_ref,int fase) {
     idCounter++;
     a->prioridade = prioridade;
     a->next = NULL;
-    //printf("%d %d %d\n",a->fase,a->id,a->prioridade);
 
     if(*head_ref == NULL) {
         *head_ref = a;
