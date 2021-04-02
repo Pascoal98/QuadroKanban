@@ -47,8 +47,6 @@ void printScreen() {
         break;
     case 2:
         printf("Nova tarefa.\n");
-        int i=1;
-        while(i<=maxTask){
         printf("Introduza a prioridade:");
         scanf("%d", &prioridade);
         while(!(prioridade>0 && prioridade<=10)){
@@ -60,8 +58,6 @@ void printScreen() {
          scanf("%d", &dataCriacao);
 
         newTask(&head, 0, prioridade, dataCriacao);
-           i++;
-        }
         printList(head);
        
         break;
@@ -76,11 +72,5 @@ void printScreen() {
 
 
 int main() {
-
-   // TAREFA *head = NULL;
-    printScreen();
-   // newTask(&head,0);
-   // newTask(&head,0);
-  // newTask(&head,0);
-    //printList(&head);
+   printScreen();
 }
