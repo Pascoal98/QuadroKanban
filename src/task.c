@@ -6,30 +6,34 @@
 
 int idCounter = 0; // contador ID global
 
+//struct TAREFA *current = NULL;
+
 void printList(TAREFA *head_ref) {
     TAREFA *temp = head_ref;
 
     while(temp != NULL) {
-        printf("id = %d \nfase = %d \nprioridade = %d \n",temp->id , temp->fase, temp->prioridade);
+        printf("id = %d \nfase = %d \nprioridade = %d\ndataCriacao = %d \n",temp->id , temp->fase, temp->prioridade, temp->dataCriacao);
         temp = temp->next;
     }
 }
 
-TAREFA *newTask(TAREFA **head_ref,int fase) {
+
+
+TAREFA *newTask(TAREFA **head_ref, int fase, int prioridade, int dataCriacao) {
 
     TAREFA *a = (TAREFA*)malloc(sizeof(TAREFA));
     if(a == NULL)
         printf("Can't allocate memory for the task\n");
     
-    int prioridade;
-    printf("Qual é a prioridade desta tarefa?\n");
-    scanf("%d",&prioridade);
+   
 
     a->fase = fase;
     a->id = idCounter;
     idCounter++;
     a->prioridade = prioridade;
+    a->dataCriacao = dataCriacao;
     a->next = NULL;
+    //printf("%d %d %d\n",a->fase,a->id,a->prioridade);
 
     if(*head_ref == NULL) {
         *head_ref = a;
@@ -82,16 +86,3 @@ int orderByPriority(const void *a, const void *b) {
     return +1;
 }
 */
-void printScreen() {
-    printf("#  #   ####     #     #    ####     ####    #     #\n");
-    printf("# #    #  #     ##    #    #   #    #  #    ##    #\n");
-    printf("##     #  #     # #   #    #  #     #  #    # #   #\n");
-    printf("#      ####     #  #  #    ###      ####    #  #  #\n");
-    printf("##     #  #     #   # #    #  #     #  #    #   # #\n");
-    printf("# #    #  #     #    ##    #   #    #  #    #    ##\n");
-    printf("#  #   #  #     #     #    ####     #  #    #     #\n");
-    printf("\n");
-    printf("1)Ver Quadro.\n");
-    printf("2)Inserir Dados.\n");
-    printf("3)Quit.\n");
-}

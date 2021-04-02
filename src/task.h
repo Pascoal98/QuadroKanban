@@ -14,4 +14,4 @@ void printScreen();
 
 void printList(TAREFA *head_ref);
 
-TAREFA *newTask(TAREFA **head_ref,int fase);
+TAREFA *newTask(TAREFA **head_ref, int fase, int prioridade, int dataCriacao);
