@@ -5,15 +5,15 @@ EXECUTABLE = kanban
 
 all: $(EXECUTABLE)
 
-$(EXECUTABLE) : main.o task.o
-		$(CC) -o $(EXECUTABLE) main.o task.o
-		rm -f main.o task.o
+$(EXECUTABLE) : main.o tarefa.o
+		$(CC) -o $(EXECUTABLE) main.o tarefa.o
+		rm -f main.o tarefa.o
 
 main.o: main.c
 	$(CC) $(CCFLAGS) main.c
 
-task.o: task.c task.h
-	$(CC) $(CCFLAGS) task.c
+tarefa.o: tarefa.c tarefa.h
+	$(CC) $(CCFLAGS) tarefa.c
 
 clean:
-	rm -f main.o task.o kanban
+	rm -f main.o tarefa.o kanban
