@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "lista.h"
+#include "fase.h"
 
 void printBanner() {
     printf("   *******                           **                 **   **                    **  \n");
@@ -14,14 +14,28 @@ void printBanner() {
     printf("  /////// //  //////  ////////  ////// ///     //////  //   //  //////// ///   // /////    //////// ///   //\n");
 }
 
+int manageId() {
+    FILE *f = fopen("id.txt","r");
+    int id;
+    if(f = NULL) {
+        f = fopen("id.txt","w");
+        fprintf(f,"%d",1);
+        id = 1;
+        fclose(f);
+        return id;
+    } else {
+        fscanf(f,"%d",&id);
+        return id;
+    }
+}
 
 int main() {
 
     printBanner();
 
-    Lista ToDo = criarLista();
-    Lista Doing = criarLista();
-    Lista Done = criarLista();
+    Fase ToDo = criarLista();
+    Fase Doing = criarLista();
+    Fase Done = criarLista();
 
     ToDo->nomeTarefa = "ToDo";
     Doing->nomeTarefa = "Doing";
