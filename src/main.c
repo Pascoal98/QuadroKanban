@@ -1,10 +1,31 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "tarefa.h"
 #include "lista.h"
 
-int main(int argc, char const *argv[]) {
-    
+void printBanner() {
+    printf("   *******                           **                 **   **                    **  \n");
+    printf("  **/////**                         /**                /**  **                    /**                      \n");
+    printf(" **     //**  **   **  ******       /** ******  ****** /** **    ******   ******* /**       ******   *******\n"); 
+    printf("/**      /** /**  /** //////**   ******//**//* **////**/****    //////** //**///**/******  //////** //**///**\n"); 
+    printf("/**    **/** /**  /**  *******  **///** /** / /**   /**/**/**    *******  /**  /**/**///**  *******  /**  /**\n"); 
+    printf("//**  // **  /**  /** **////** /**  /** /**   /**   /**/**//**  **////**  /**  /**/**  /** **////**  /**  /**\n");
+    printf(" //******* **//******//********//******/***   //****** /** //**//******** ***  /**/****** //******** ***  /**\n");
+    printf("  /////// //  //////  ////////  ////// ///     //////  //   //  //////// ///   // /////    //////// ///   //\n");
+}
+
+
+int main() {
+
+    printBanner();
+
+    Lista ToDo = criarLista();
+    Lista Doing = criarLista();
+    Lista Done = criarLista();
+
+    ToDo->nomeTarefa = "ToDo";
+    Doing->nomeTarefa = "Doing";
+    Done->nomeTarefa = "Done";
+
     return 0;
 }

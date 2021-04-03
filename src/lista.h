@@ -1,5 +1,12 @@
+#include "tarefa.h"
+
+typedef struct lista* Lista;
+
 typedef struct lista {
     Tarefa *tarefa;
+    int listId;
     char *nomeTarefa;
     Lista next;
-}Lista;
+}List;
+
+Lista criarLista();
