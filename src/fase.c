@@ -1,14 +1,14 @@
 #include <stdio.h>
 #include <stdlib.h>
 
-#include "lista.h"
+#include "fase.h"
 
-Lista criarLista() {
+Fase criarLista() {
 
-    Lista temp = (Lista)malloc(sizeof(List));
+    Fase temp = (Fase)malloc(sizeof(Fase_node));
 
     if(temp != NULL) {
-        temp->listId = 0;
+        temp->faseId = 0;
         temp->next = NULL;
     }
     return temp;
