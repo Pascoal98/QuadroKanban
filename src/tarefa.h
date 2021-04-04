@@ -3,3 +3,5 @@ typedef struct tarefa{
     char *descricao;
     char *pessoa;
 }Tarefa;
+
+Tarefa* novaTarefa(Tarefa **head_ref);
