@@ -17,7 +17,7 @@ void printBanner() {
 int manageId() {
     FILE *f = fopen("id.txt","r");
     int id;
-    if(f = NULL) {
+    if(f == NULL) {
         f = fopen("id.txt","w");
         fprintf(f,"%d",1);
         id = 1;
