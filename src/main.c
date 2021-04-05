@@ -12,7 +12,14 @@ void printBanner() {
     printf("//**  // **  /**  /** **////** /**  /** /**   /**   /**/**//**  **////**  /**  /**/**  /** **////**  /**  /**\n");
     printf(" //******* **//******//********//******/***   //****** /** //**//******** ***  /**/****** //******** ***  /**\n");
     printf("  /////// //  //////  ////////  ////// ///     //////  //   //  //////// ///   // /////    //////// ///   //\n");
-}
+
+    printf("\n");
+    printf("1)Inserir tarefa.\n");
+    printf("2)Sair.\n");
+
+    
+    }
+
 
 int manageId() {
     FILE *f = fopen("id.txt","r");
@@ -30,8 +37,20 @@ int manageId() {
 }
 
 int main() {
-
+    Tarefa **nova= NULL;
     printBanner();
+   
+    int op;
+    scanf("%d", &op);
+
+    switch (op){
+    case 1:
+     novaTarefa(nova);
+        break;
+    default:
+        printf("Bye!\n");
+        break;
+    }
 
     Fase ToDo = criarLista();
     Fase Doing = criarLista();
