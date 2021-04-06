@@ -2,6 +2,8 @@
 #include <stdlib.h>
 
 #include "fase.h"
+#include "tarefa.h"
+#include "file.h"
 
 void printBanner() {
     printf("   *******                           **                 **   **                    **  \n");

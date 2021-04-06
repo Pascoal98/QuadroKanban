@@ -3,31 +3,10 @@
 #include <stdlib.h>
 
 #include "tarefa.h"
+#include "file.h"
 
 #define maxAno 2999
 #define minAno 2000
-
-
-
-int manageId() {
-    FILE *fp = fopen("id.txt","r");
-    int id;
-    if(fp == NULL) {
-        fp = fopen("id.txt","w");
-        fprintf(fp,"%d",1);
-        id = 1;
-        fclose(fp);
-        return id;
-    } else {
-        fscanf(fp,"%d",&id);
-        fclose(fp);
-        ++id;
-        fp = fopen("id.txt","w");
-        fprintf(fp,"%d",id);
-        fclose(fp);
-        return id;
-    }
-}
 
 unsigned concatenate(unsigned x, unsigned y) {
     unsigned pow = 10;

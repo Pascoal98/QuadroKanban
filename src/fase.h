@@ -1,3 +1,5 @@
+#ifndef FASE_H
+#define FASE_H
 #include "tarefa.h"
 #define NOME_BUFFER 256
 
@@ -17,3 +19,5 @@ Fase* criarLista(char nome[]);
 void orderByPriority(Fase* head);
 void orderByName(Fase* head);
 void orderByDate(Fase* head);
+
+#endif
