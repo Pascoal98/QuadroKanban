@@ -5,3 +5,7 @@ typedef struct tarefa{
 }Tarefa;
 
 Tarefa* novaTarefa(Tarefa **head_ref);
+
+int getDate(int dia, int mes, int ano);
+
+unsigned concatenate(unsigned x, unsigned y);

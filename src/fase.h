@@ -7,8 +7,12 @@ typedef struct fase {
     int faseId;
     char *nomeTarefa;
     Fase next;
-}Fase_node;
+}Phase;
 
 Fase criarLista();
 
-void orderById(Fase );
+void orderByPriority(Fase head);
+
+void orderByName(Fase head);
+
+void orderByDate(Fase head);
