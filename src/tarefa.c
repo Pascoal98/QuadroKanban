@@ -8,6 +8,27 @@
 #define minAno 2000
 
 
+
+int manageId() {
+    FILE *fp = fopen("id.txt","r");
+    int id;
+    if(fp == NULL) {
+        fp = fopen("id.txt","w");
+        fprintf(fp,"%d",1);
+        id = 1;
+        fclose(fp);
+        return id;
+    } else {
+        fscanf(fp,"%d",&id);
+        fclose(fp);
+        ++id;
+        fp = fopen("id.txt","w");
+        fprintf(fp,"%d",id);
+        fclose(fp);
+        return id;
+    }
+}
+
 unsigned concatenate(unsigned x, unsigned y) {
     unsigned pow = 10;
     while(y >= pow)
@@ -42,12 +63,10 @@ int getDate(int dia, int mes, int ano){
 
 
 
-Tarefa* novaTarefa(Tarefa **head_ref){
+Tarefa* novaTarefa(){
     Tarefa *a = (Tarefa*)malloc(sizeof(Tarefa));
-    int id=0;
-    a->id= id;
-    id++;
 
+    a->id= manageId();
    
     printf("Introduza a prioridade: ");
     scanf("%d", &a->prioridade);
@@ -65,7 +84,5 @@ Tarefa* novaTarefa(Tarefa **head_ref){
     fgets(des, 256, stdin);
     a->descricao= des;
 
-    return a;
-
-    
+    return a; 
 }

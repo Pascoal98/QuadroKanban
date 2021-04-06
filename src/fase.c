@@ -4,21 +4,25 @@
 
 #include "fase.h"
 
-Fase criarLista() {
+Fase* criarLista(char nome[]) {
 
-    Fase temp = (Fase)malloc(sizeof(Phase));
+    Fase* temp = malloc(sizeof(Fase));
 
-    if(temp != NULL) {
-        temp->faseId = 0;
-        temp->next = NULL;
+    if(temp == NULL) {
+        printf("Erro a alocar espaço para a Lista.\n");
+        exit(1);
     }
+    strncpy(temp->nomeTarefa,nome,NOME_BUFFER);
+    temp->next = NULL;
+
     return temp;
 }
 
-void orderByPriority(Fase head) {
+
+void orderByPriority(Fase* head) {
     
-    Fase prev = head;
-    Fase curr = head->next;
+    Fase* prev = head;
+    Fase* curr = head->next;
 
     while(curr != NULL) {
         if(curr->tarefa->prioridade == prev->tarefa->prioridade){
@@ -41,10 +45,10 @@ void orderByPriority(Fase head) {
     }
 }
 
-void orderByName(Fase head) {
+void orderByName(Fase* head) {
     
-    Fase prev = head;
-    Fase curr = head->next;
+    Fase* prev = head;
+    Fase* curr = head->next;
 
     while(curr != NULL) {
         if(strcmp(curr->tarefa->pessoa,prev->tarefa->pessoa) < 0) {
@@ -58,10 +62,10 @@ void orderByName(Fase head) {
     }
 }
 
-void orderByDate(Fase head) {
+void orderByDate(Fase* head) {
     
-    Fase prev = head;
-    Fase curr = head->next;
+    Fase* prev = head;
+    Fase* curr = head->next;
 
     while(curr != NULL) {
         if(curr->tarefa->dataConclusao < prev->tarefa->dataConclusao) {

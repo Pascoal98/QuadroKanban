@@ -4,8 +4,10 @@ typedef struct tarefa{
     char *pessoa;
 }Tarefa;
 
-Tarefa* novaTarefa(Tarefa **head_ref);
+Tarefa* novaTarefa();
 
 int getDate(int dia, int mes, int ano);
 
 unsigned concatenate(unsigned x, unsigned y);
+
+int manageId();

@@ -12,53 +12,37 @@ void printBanner() {
     printf("//**  // **  /**  /** **////** /**  /** /**   /**   /**/**//**  **////**  /**  /**/**  /** **////**  /**  /**\n");
     printf(" //******* **//******//********//******/***   //****** /** //**//******** ***  /**/****** //******** ***  /**\n");
     printf("  /////// //  //////  ////////  ////// ///     //////  //   //  //////// ///   // /////    //////// ///   //\n");
-
-    printf("\n");
-    printf("1)Inserir tarefa.\n");
-    printf("2)Sair.\n");
-
-    
     }
 
-
-int manageId() {
-    FILE *f = fopen("id.txt","r");
-    int id;
-    if(f == NULL) {
-        f = fopen("id.txt","w");
-        fprintf(f,"%d",1);
-        id = 1;
-        fclose(f);
-        return id;
-    } else {
-        fscanf(f,"%d",&id);
-        return id;
-    }
+void printOptions() {
+    printf("\nOpçôes: \n");
+    printf("1)Criar Tarefa;\n");
+    printf("2)Passar tarefa para a fase 'Doing';\n");
+    printf("3)Alterar pessoa responsável numa tarefa;\n");
+    printf("4)Concluir tarefa;\n");
+    printf("5)Reabrir tarefa;\n");
+    printf("6)Visualizar o Quadra de Kanban;\n");
+    printf("7)Visualizar todas as tarefas de uma pessoa;\n");
+    printf("8)Visualizar todas as tarefas ordenadas por data de criação;\n");
+    printf("9)Sair.\n");
 }
 
+
 int main() {
-    Tarefa **nova= NULL;
-    printBanner();
-   
-    int op;
-    scanf("%d", &op);
+    
+    criarLista("ToDo");
+    criarLista("Doing");
+    criarLista("Done");
 
-    switch (op){
-    case 1:
-     novaTarefa(nova);
-        break;
-    default:
-        printf("Bye!\n");
-        break;
+    int loopMenu = 1;
+    while(loopMenu) {
+        printBanner();
+        printOptions();
+        manageId();
+        manageId();
+        manageId();
+        loopMenu = 0;
     }
-
-    Fase ToDo = criarLista();
-    Fase Doing = criarLista();
-    Fase Done = criarLista();
-
-    ToDo->nomeTarefa = "ToDo";
-    Doing->nomeTarefa = "Doing";
-    Done->nomeTarefa = "Done";
 
     return 0;
 }

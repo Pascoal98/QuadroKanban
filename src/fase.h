@@ -1,18 +1,19 @@
 #include "tarefa.h"
-
-typedef struct fase* Fase;
+#define NOME_BUFFER 256
 
 typedef struct fase {
     Tarefa *tarefa;
-    int faseId;
-    char *nomeTarefa;
-    Fase next;
-}Phase;
+    char nomeTarefa[NOME_BUFFER];
+    struct fase* next;
+}Fase;
 
-Fase criarLista();
+typedef struct {
+    int tamanho;
+    Fase* primeiro;
+    Fase* ultimo;
+}List;
 
-void orderByPriority(Fase head);
-
-void orderByName(Fase head);
-
-void orderByDate(Fase head);
+Fase* criarLista(char nome[]);
+void orderByPriority(Fase* head);
+void orderByName(Fase* head);
+void orderByDate(Fase* head);
