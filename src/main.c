@@ -2,8 +2,8 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "func.h"
-
+#include "tarefa.h"
+#include "file.h"
 
 void printBanner() {
     printf("   *******                           **                 **   **                    **  \n");
@@ -18,23 +18,24 @@ void printBanner() {
 
 void printOptions() {
     printf("\nOpçôes: \n");
-    printf("1)Criar Tarefa;\n");
-    printf("2)Passar tarefa para a fase 'Doing';\n");
-    printf("3)Alterar pessoa responsável numa tarefa;\n");
-    printf("4)Concluir tarefa;\n");
-    printf("5)Reabrir tarefa;\n");
-    printf("6)Visualizar o Quadra de Kanban;\n");
-    printf("7)Visualizar todas as tarefas de uma pessoa;\n");
-    printf("8)Visualizar todas as tarefas ordenadas por data de criação;\n");
-    printf("9)Sair.\n");
+    printf("a)Criar Tarefa;\n");
+    printf("b)Passar tarefa para a fase 'Doing';\n");
+    printf("c)Alterar pessoa responsável numa tarefa;\n");
+    printf("d)Concluir tarefa;\n");
+    printf("e)Reabrir tarefa;\n");
+    printf("f)Visualizar o Quadra de Kanban;\n");
+    printf("g)Visualizar todas as tarefas de uma pessoa;\n");
+    printf("h)Visualizar todas as tarefas ordenadas por data de criação;\n");
+    printf("i)Carregar os ficheiros;\n");
+    printf("j)Sair.\n");
 }
 
 
 int main() {
     
     List* ToDo = createList();
-    List* Doing = createList();
-    List* Done = createList();
+    //List* Doing = createList();
+    //List* Done = createList();
 
 
 
@@ -44,13 +45,48 @@ int main() {
 
         printBanner();
         printOptions();
-        scanf("%c",&opcao);
+        scanf("%c[^\n]",&opcao);
 
         switch (opcao) {
         case 'a':
+        case 'A':
             novaTarefa(ToDo);
             break;
         case 'b':
+        case 'B':
+            printToDo(ToDo);
+            //taskToDoing(ToDo,Doing);
+            break;
+        case 'c':
+        case 'C':
+            //changeName(Doing);
+            break;
+        case 'd':
+        case 'D':
+            //taskToDone(Doing,Done);
+            break;
+        case 'e':
+        case 'E':
+            //taskToToDo(Done,ToDo);
+            break;
+        case 'f':
+        case 'F':
+            //viewBoard(ToDo,Doing,Done);
+            break;
+        case 'g':
+        case 'G':
+            //personTasks(Doing,Done);
+            break;
+        case 'h':
+        case 'H':
+            //viewTasksCrono();
+            break;
+        case 'i':
+        case 'I':
+            //loadFiles(ToDo,Doing,Done);
+            break;
+        case 'j':
+        case 'J':
             printf("Saindo do programa...\n");
             loopMenu = 0;
             break;

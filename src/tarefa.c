@@ -1,6 +1,4 @@
 #include "tarefa.h"
-#define maxAno 2999
-#define minAno 2000
 
 List* createList() {
 
@@ -11,7 +9,6 @@ List* createList() {
     }
     temp->tamanho = 0;
     temp->primeiro = NULL;
-    temp->ultimo = NULL;
     return temp;
 }
 
@@ -45,4 +42,87 @@ int getDate(int dia, int mes, int ano){
     else{
         return 0;
     } 
+}
+
+void printToDo(List* list) {
+    for(Tarefa* curr = list->primeiro; curr != NULL ; curr = curr->next) {
+        printf("%d\n",curr->prioridade);
+    }
+    printf("\n\n\n\n\n\n\n");
+}
+
+
+void novaTarefa(List* list) {
+
+    char des[NOME_BUFFER];
+    printf("Faça uma breve descrição da tarefa: \n");
+    fgets(des,sizeof(des),stdin);
+    des[strlen(des)-1] = '\0';
+    addTarefa(list,des);
+}
+
+void addTarefa(List* list, char des[]) {
+    Tarefa* tarefa = malloc(sizeof(Tarefa));
+
+    if(tarefa == NULL) {
+        printf("Erro a alocar espaço para a Tarefa.\n");
+        exit(1);
+    }
+
+    tarefa->id= manageId();
+    printf("Introduza a prioridade: ");
+    scanf("%d", &tarefa->prioridade);
+    int dia,mes,ano;
+    printf("Introduza a data - DD/MM/YYYY : ");
+    scanf("%d/%d/%d",&dia,&mes,&ano);
+    if(!getDate(dia,mes,ano)){
+         printf("Data invália!Introduza uma nova data - DD/MM/YYYY : ");
+        scanf("%d/%d/%d",&dia,&mes,&ano);
+    }
+    tarefa->dataCriacao=getDate(dia,mes,ano);
+    strncpy(tarefa->descricao,des,NOME_BUFFER);
+
+    if(list->tamanho == 0) {
+        list->primeiro = tarefa;
+    }
+    else {
+        insertSorted(list,tarefa);
+    }
+    list->tamanho++;
+}
+
+void insertSorted(List* list, Tarefa* tarefa) {
+    
+    Tarefa* curr = list->primeiro;
+    Tarefa* last = NULL;
+
+    while(curr != NULL) {
+        if(tarefa->prioridade > curr->prioridade){
+            if(last == NULL){
+                tarefa->next = list->primeiro;
+                list->primeiro = tarefa;
+                return;
+            } else {
+                tarefa->next = last->next;
+                last->next = tarefa;
+                return;
+            }
+        }else 
+        if(tarefa->prioridade == curr->prioridade) {
+            if(tarefa->dataCriacao < curr->dataCriacao) {
+                if(last == NULL) {
+                    tarefa->next = list->primeiro;
+                    list->primeiro = tarefa;
+                    return;
+                } else {
+                    tarefa->next = last->next;
+                    last->next = tarefa;
+                    return;
+                }
+            }
+        } else {
+            last = curr;
+            curr = curr->next;
+        }
+    }
 }
