@@ -19,7 +19,6 @@ typedef struct tarefa{
 typedef struct {
     int tamanho;
     Tarefa* primeiro;
-    //Tarefa* ultimo;
 }List;
 
 List* createList();

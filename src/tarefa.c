@@ -126,3 +126,7 @@ void insertSorted(List* list, Tarefa* tarefa) {
         }
     }
 }
+
+void taskToDoing(List* list1, List* list2) {
+    
+}
