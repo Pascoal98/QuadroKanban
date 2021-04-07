@@ -9,7 +9,7 @@
 int main() {
     
     List* ToDo = createList();
-    List* Doing = createList();
+    //List* Doing = createList();
     //List* Done = createList();
 
 
@@ -25,11 +25,13 @@ int main() {
         switch (opcao) {
         case 'a':
         case 'A':
+            system("clear");
             novaTarefa(ToDo);
             break;
         case 'b':
         case 'B':
-            taskToDoing(ToDo,Doing);
+            printToDo(ToDo);
+            //taskToDoing(ToDo,Doing);
             break;
         case 'c':
         case 'C':

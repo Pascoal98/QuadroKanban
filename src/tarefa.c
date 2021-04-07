@@ -46,16 +46,17 @@ int getDate(int dia, int mes, int ano){
 
 void printToDo(List* list) {
     for(Tarefa* curr = list->primeiro; curr != NULL ; curr = curr->next) {
-        printf("%d\n",curr->prioridade);
+        printf("Prioridade: %d\n",curr->prioridade);
+        printf("Id: %d\n",curr->id);
+        printf("Descrição: %s\n",curr->descricao);
     }
-    printf("\n\n\n\n\n\n\n");
 }
 
 
 void novaTarefa(List* list) {
-
     char des[NOME_BUFFER];
-    printf("Faça uma breve descrição da tarefa: \n");
+    printf("Faça uma breve descrição da tarefa: ");
+    getchar();
     fgets(des,sizeof(des),stdin);
     des[strlen(des)-1] = '\0';
     addTarefa(list,des);
@@ -86,12 +87,13 @@ void addTarefa(List* list, char des[]) {
         list->primeiro = tarefa;
     }
     else {
-        insertSorted(list,tarefa);
+        insertSortedPriority(list,tarefa);
     }
     list->tamanho++;
+    system("clear");
 }
 
-void insertSorted(List* list, Tarefa* tarefa) {
+void insertSortedPriority(List* list, Tarefa* tarefa) {
     
     Tarefa* curr = list->primeiro;
     Tarefa* last = NULL;
@@ -128,5 +130,7 @@ void insertSorted(List* list, Tarefa* tarefa) {
 }
 
 void taskToDoing(List* list1, List* list2) {
-    
+    if(list2->tamanho == MAX_SIZE) {
+        printf("A lista está cheia, por favor acabe um tarefa antes de adicionar outra.\n");
+    }
 }

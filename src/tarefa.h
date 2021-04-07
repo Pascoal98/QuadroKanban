@@ -5,6 +5,8 @@
 #include <stdlib.h>
 #include <string.h>
 #include "file.h"
+
+#define MAX_SIZE 6
 #define NOME_BUFFER 256
 #define maxAno 2999
 #define minAno 2000
@@ -27,7 +29,7 @@ unsigned concatenate(unsigned x, unsigned y);
 void printToDo(List* list);
 void novaTarefa(List* list);
 void addTarefa(List* list, char des[]);
-void insertSorted(List* list, Tarefa* tarefa);
+void insertSortedPriority(List* list, Tarefa* tarefa);
 void taskToDoing(List* ToDo, List* Doing);
 void changeName(List* Doing);
 void taskToDone(List* Doing, List* Done);
