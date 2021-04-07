@@ -5,8 +5,8 @@ EXECUTABLE = kanban
 
 all: $(EXECUTABLE)
 
-$(EXECUTABLE) : main.o tarefa.o fase.o file.o func.o
-		$(CC) -o $(EXECUTABLE) main.o tarefa.o fase.o file.o func.o
+$(EXECUTABLE) : main.o tarefa.o file.o func.o
+		$(CC) -o $(EXECUTABLE) main.o tarefa.o file.o func.o
 		rm -f main.o tarefa.o fase.o file.o func.o
 
 main.o: main.c
@@ -14,9 +14,6 @@ main.o: main.c
 
 tarefa.o: tarefa.c tarefa.h
 	$(CC) $(CCFLAGS) tarefa.c
-
-fase.o: fase.c fase.h
-	$(CC) $(CCFLAGS) fase.c
 
 file.o: file.c file.h
 	$(CC) $(CCFLAGS) file.c

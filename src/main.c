@@ -5,7 +5,6 @@
 #include "func.h"
 
 
-
 void printBanner() {
     printf("   *******                           **                 **   **                    **  \n");
     printf("  **/////**                         /**                /**  **                    /**                      \n");
@@ -40,19 +39,20 @@ int main() {
 
 
     int loopMenu = 1;
-    int opcao;
+    char opcao;
     while(loopMenu) {
 
         printBanner();
         printOptions();
-        scanf("%d",&opcao);
+        scanf("%c",&opcao);
 
         switch (opcao) {
-        case '1':
+        case 'a':
             novaTarefa(ToDo);
             break;
-        
-        default:
+        case 'b':
+            printf("Saindo do programa...\n");
+            loopMenu = 0;
             break;
         }
     }
