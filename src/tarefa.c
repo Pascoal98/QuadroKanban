@@ -1,9 +1,4 @@
-
-#include <stdio.h>
-#include <stdlib.h>
-
 #include "tarefa.h"
-#include "file.h"
 
 #define maxAno 2999
 #define minAno 2000
@@ -38,30 +33,4 @@ int getDate(int dia, int mes, int ano){
     else{
         return 0;
     } 
-}
-
-
-
-Tarefa* novaTarefa(){
-    Tarefa *a = (Tarefa*)malloc(sizeof(Tarefa));
-
-    a->id= manageId();
-   
-    printf("Introduza a prioridade: ");
-    scanf("%d", &a->prioridade);
-    int dia,mes,ano;
-    printf("Introduza a data - DD/MM/YYYY : ");
-    scanf("%d/%d/%d",&dia,&mes,&ano);
-    if(!getDate(dia,mes,ano)){
-         printf("Data invália!Introduza uma nova data - DD/MM/YYYY : ");
-        scanf("%d/%d/%d",&dia,&mes,&ano);
-    }
-    a->dataCriacao=getDate(dia,mes,ano);
-    char *des = malloc(256*sizeof(char));
-    getchar();
-    printf("Descrição :");
-    fgets(des, 256, stdin);
-    a->descricao= des;
-
-    return a; 
 }

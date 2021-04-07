@@ -1,9 +1,10 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include <string.h>
 
-#include "fase.h"
-#include "tarefa.h"
-#include "file.h"
+#include "func.h"
+
+
 
 void printBanner() {
     printf("   *******                           **                 **   **                    **  \n");
@@ -32,18 +33,28 @@ void printOptions() {
 
 int main() {
     
-    criarLista("ToDo");
-    criarLista("Doing");
-    criarLista("Done");
+    List* ToDo = createList();
+    List* Doing = createList();
+    List* Done = createList();
+
+
 
     int loopMenu = 1;
+    int opcao;
     while(loopMenu) {
+
         printBanner();
         printOptions();
-        manageId();
-        manageId();
-        manageId();
-        loopMenu = 0;
+        scanf("%d",&opcao);
+
+        switch (opcao) {
+        case '1':
+            novaTarefa(ToDo);
+            break;
+        
+        default:
+            break;
+        }
     }
 
     return 0;
