@@ -9,6 +9,7 @@ typedef struct {
     Tarefa* primeiro;
 }List;
 
+
 List* createList();
 void printToDo(List* list);
 void printDoing(List* list);
@@ -26,9 +27,8 @@ void deleteFromListId(List* list, int id);
 void changeName(List* Doing);
 void changePerson(List* list,int id);
 
-
 void viewBoard(List* ToDo, List* Doing, List* Done);
 void personTasks(List* Doing, List* Done);
-void viewTasksCrono();
-
+void viewTasksCrono(List* list1, List* list2, List* list3);
+int compareDates(const void *a, const void *b);
 #endif

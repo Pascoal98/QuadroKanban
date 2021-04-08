@@ -85,3 +85,14 @@ void setLimitDate(Tarefa* tarefa) {
     }
     tarefa->dataLimite=getDate(dia,mes,ano);
 }
+
+void setPriority(Tarefa* tarefa) {
+    int prio;
+    printf("Introduza a prioridade: ");
+    scanf("%d[^\n]", &prio);
+    while(prio <= 0 || prio >= 11) {
+        printf("Por favor introduza uma prioridade entre 1 e 10.\n");
+        scanf("%d[^\n]", &prio);
+    }
+    tarefa->prioridade = prio;
+}

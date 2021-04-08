@@ -27,4 +27,5 @@ void setPessoaTarefa(Tarefa* tarefa);
 void setStartDate(Tarefa* tarefa);
 void setFinishDate(Tarefa* tarefa);
 void setLimitDate(Tarefa* tarefa);
+void setPriority(Tarefa* tarefa);
 #endif

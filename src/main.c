@@ -85,7 +85,7 @@ int main() {
         case 'h':
         case 'H':
             system("clear");
-            //viewTasksCrono();
+            viewTasksCrono(ToDo,Doing,Done);
             break;
         case 'i':
         case 'I':

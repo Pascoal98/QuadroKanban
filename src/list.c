@@ -97,8 +97,7 @@ void novaTarefa(List* list) {
 
     tarefa->next = NULL;
     tarefa->id= manageId();
-    printf("Introduza a prioridade: ");
-    scanf("%d[^\n]", &tarefa->prioridade);
+    setPriority(tarefa);
     setStartDate(tarefa);
     readDescTarefa(tarefa);
     if(list->tamanho == 0) {
@@ -210,26 +209,55 @@ void insertSortedPriority(List* list, Tarefa* tarefa) {
                 return;
             }
         }else 
-        if(tarefa->prioridade == curr->prioridade) {
-            if(tarefa->dataCriacao < curr->dataCriacao) {
-                if(last == NULL) {
-                    tarefa->next = list->primeiro;
-                    list->primeiro = tarefa;
+            if(tarefa->prioridade == curr->prioridade) {
+                if(tarefa->dataCriacao < curr->dataCriacao) {
+                    if(last == NULL) {
+                        tarefa->next = list->primeiro;
+                        list->primeiro = tarefa;
+                        return;
+                    } else {
+                        tarefa->next = last->next;
+                        last->next = tarefa;
+                        return;
+                    }
+                }else 
+                    if(tarefa->dataCriacao == curr->dataCriacao) {
+                        if(tarefa->id < curr->id) {
+                            if(last == NULL) {
+                                tarefa->next = list->primeiro;
+                                list->primeiro = tarefa;
+                                return;
+                            } else {
+                                tarefa->next = last->next;
+                                last->next = tarefa;
+                                return;
+                            }
+                        } else {
+                            if(curr->next == NULL){
+                                tarefa->next = NULL;
+                                curr->next = tarefa;
+                                return;
+                            }
+                            last = curr;
+                            curr = curr->next;
+                        }
+                    } else {
+                        if(curr->next == NULL){
+                            tarefa->next = NULL;
+                            curr->next = tarefa;
+                            return;
+                        }
+                        last = curr;
+                        curr = curr->next;
+                    }
+            }else 
+                if(curr->next == NULL){
+                    tarefa->next = NULL;
+                    curr->next = tarefa;
                     return;
-                } else {
-                    tarefa->next = last->next;
-                    last->next = tarefa;
-                    return;
-                }
-            } 
-        }else 
-            if(curr->next == NULL){
-                tarefa->next = NULL;
-                curr->next = tarefa;
-                return;
-        }else {
-            last = curr;
-            curr = curr->next;
+            }else {
+                last = curr;
+                curr = curr->next;
         }
     }
 }
@@ -365,7 +393,6 @@ void changeName(List* list) {
 void changePerson(List* list, int id) {
 
     Tarefa* curr = list->primeiro;
-    Tarefa* prev;
 
     if(curr == NULL) {
         return;
@@ -374,14 +401,77 @@ void changePerson(List* list, int id) {
         setPessoaTarefa(curr);
         return;
     }
-    prev = list->primeiro;
+    curr = curr->next;
     while(curr != NULL) {
         if(curr->id == id) {
             setPessoaTarefa(curr);
             return;
         } else {
-            prev->next = curr;
             curr = curr->next;
         }
+    }
+}
+
+int compareDates(const void *a, const void *b) {
+    Tarefa *t1 = (Tarefa *)a;
+    Tarefa *t2 = (Tarefa *)b;
+
+    if(t1->dataCriacao > t2->dataCriacao) return +1;
+    if(t1->dataCriacao < t2->dataCriacao) return -1;
+    if(t1->dataCriacao == t2->dataCriacao) {
+        if(t1->id > t2->id) return +1;
+        if(t1->id < t2->id) return -1;
+    }
+    return 0;
+}
+
+void viewTasksCrono(List* list1, List* list2, List* list3) {
+
+    int size = list1->tamanho + list2->tamanho + list3->tamanho;
+
+    if(size == 0) {
+        printf("Não existe tarefas nas listas!\n");
+        return;
+    }
+    Tarefa array[size];
+
+    Tarefa* curr = list1->primeiro;
+
+    if(list1->tamanho > 0) {
+        for(int i = 0; i < list1->tamanho; i++){
+            if(curr != NULL) {
+                array[i].id = curr->id;
+                array[i].dataCriacao = curr->dataCriacao;
+                curr = curr->next;
+            }
+        }
+    }
+
+    curr = list2->primeiro;
+    if(list2->tamanho > 0) {
+        for(int i = list1->tamanho; i < list2->tamanho+list1->tamanho; i++){
+            if(curr != NULL) {
+                array[i].id = curr->id;
+                array[i].dataCriacao = curr->dataCriacao;
+                curr = curr->next;
+            }
+        }
+    }
+    curr = list3->primeiro;
+    if(list3->tamanho > 0) {
+        for(int i = list1->tamanho + list2->tamanho; i < size; i++){
+            if(curr != NULL) {
+                array[i].id = curr->id;
+                array[i].dataCriacao = curr->dataCriacao;
+                curr = curr->next;
+            }
+        }
+    }
+
+    qsort(array,size,sizeof(Tarefa),compareDates);
+
+    for(int j = 0; j < size; j++) {
+        printf("id: %d\n", array[j].id);
+        printf("Data de Criação: %d\n",array[j].dataCriacao);
     }
 }
