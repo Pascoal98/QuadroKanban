@@ -44,7 +44,7 @@ int getDate(int dia, int mes, int ano){
     } 
 }
 
-void printToDo(List* list) {
+void printList(List* list) {
     for(Tarefa* curr = list->primeiro; curr != NULL ; curr = curr->next) {
         printf("Prioridade: %d\n",curr->prioridade);
         printf("Id: %d\n",curr->id);
@@ -52,6 +52,21 @@ void printToDo(List* list) {
     }
 }
 
+void printIds(List* list) {
+    for(Tarefa* curr = list->primeiro; curr != NULL ; curr = curr->next) {
+        printf("Id: %d\n",curr->id);
+        printf("Descrição: %s\n",curr->descricao);
+        printf("---------------------------------\n");
+    }
+}
+
+void printNames(List* list) {
+    for(Tarefa* curr = list->primeiro; curr != NULL ; curr = curr->next) {
+        printf("Id: %d\n",curr->id);
+        printf("Nome: %s\n",curr->pessoa);
+        printf("---------------------------------\n");
+    }
+}
 
 void novaTarefa(List* list) {
     char des[NOME_BUFFER];
@@ -70,6 +85,7 @@ void addTarefa(List* list, char des[]) {
         exit(1);
     }
 
+    tarefa->next = NULL;
     tarefa->id= manageId();
     printf("Introduza a prioridade: ");
     scanf("%d", &tarefa->prioridade);
@@ -129,8 +145,156 @@ void insertSortedPriority(List* list, Tarefa* tarefa) {
     }
 }
 
+Tarefa* searchUntil(List* list, int id) {
+        
+    Tarefa* curr = list->primeiro;
+    
+    while(curr != NULL) {
+        if(curr->id == id) {
+            return curr;
+        }
+        curr = curr->next;
+    }
+    return NULL;
+}
+
 void taskToDoing(List* list1, List* list2) {
     if(list2->tamanho == MAX_SIZE) {
-        printf("A lista está cheia, por favor acabe um tarefa antes de adicionar outra.\n");
+        printf("A lista está cheia, por favor acabe uma tarefa antes de adicionar outra.\n");
+    } else {
+        int idaux;
+        printf("Qual é o id da tarefa que pertence mover?\n");
+        printIds(list1);
+        scanf("%d",&idaux);
+        Tarefa* aux = searchUntil(list1,idaux);
+        if(aux == NULL) {
+            printf("O id que selecionou não tem tarefa no ToDo.\n");
+            exit(1);
+        } else {
+            printf("Quem é a pessoa responsável por esta tarefa?\n");
+            char pessoa[NOME_BUFFER];
+            getchar();
+            fgets(pessoa,sizeof(pessoa),stdin);
+            strncpy(aux->pessoa,pessoa,NOME_BUFFER);
+            int dia,mes,ano;
+            printf("Introduza a data limite de conclusão - DD/MM/YYYY : ");
+            scanf("%d/%d/%d",&dia,&mes,&ano);
+            
+            if(!getDate(dia,mes,ano)){
+                printf("Data invália!Introduza uma nova data - DD/MM/YYYY : ");
+                scanf("%d/%d/%d",&dia,&mes,&ano);
+            }
+            aux->dataLimite=getDate(dia,mes,ano);
+            if(list2->tamanho == 0) {
+                list2->primeiro = aux;
+            }
+            else {
+                insertSortedName(list2,aux);
+            }
+            deleteFromListId(list1,aux->id);
+            list1->tamanho--;
+            list2->tamanho++;
+        }   
+    }
+    printf("Tarefa foi movida da lista ToDo para Doing.\n");
+}
+
+void deleteFromListId(List* list, int id) {
+        
+    Tarefa* curr = list->primeiro;
+    Tarefa* prev;
+
+    if(curr == NULL) {
+        return;
+    }
+    if(curr->id == id) {
+        list->primeiro = curr->next;
+        return;
+    }
+    prev = list->primeiro;
+    while(curr != NULL) {
+        if(curr->id == id) {
+            prev->next = curr->next;
+            return;
+        } else {
+            prev->next = curr;
+            curr = curr->next;
+        }
+    }
+}
+
+void insertSortedName(List* list, Tarefa* tarefa) {
+    
+    Tarefa* curr = list->primeiro;
+    Tarefa* last = NULL;
+
+    while(curr != NULL) {
+        if(strcmp(tarefa->pessoa,curr->pessoa) < 0){
+            if(last == NULL){
+                tarefa->next = list->primeiro;
+                list->primeiro = tarefa;
+                return;
+            } else {
+                tarefa->next = last->next;
+                last->next = tarefa;
+                return;
+            }
+        }else 
+        if(strcmp(tarefa->pessoa,curr->pessoa) == 0) {
+            if(tarefa->dataCriacao < curr->dataCriacao) {
+                if(last == NULL) {
+                    tarefa->next = list->primeiro;
+                    list->primeiro = tarefa;
+                    return;
+                } else {
+                    tarefa->next = last->next;
+                    last->next = tarefa;
+                    return;
+                }
+            }
+        } else {
+            last = curr;
+            curr = curr->next;
+        }
+    }
+}
+
+void changeName(List* list) {
+    int idaux;
+    printf("Qual é o id do nome da pessoa que pertence mudar?\n");
+    printNames(list);
+    scanf("%d",&idaux);
+    change(list,idaux);
+}
+
+void change(List* list, int id) {
+
+    Tarefa* curr = list->primeiro;
+    Tarefa* prev;
+
+    if(curr == NULL) {
+        return;
+    }
+    if(curr->id == id) {
+        printf("Para que pessoa deseja mudar?\n");
+        char pessoa[NOME_BUFFER];
+        getchar();
+        fgets(pessoa,sizeof(pessoa),stdin);
+        strncpy(curr->pessoa,pessoa,NOME_BUFFER);
+        return;
+    }
+    prev = list->primeiro;
+    while(curr != NULL) {
+        if(curr->id == id) {
+            printf("Para que pessoa deseja mudar?\n");
+            char pessoa[NOME_BUFFER];
+            getchar();
+            fgets(pessoa,sizeof(pessoa),stdin);
+            strncpy(curr->pessoa,pessoa,NOME_BUFFER);
+            return;
+        } else {
+            prev->next = curr;
+            curr = curr->next;
+        }
     }
 }

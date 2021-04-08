@@ -9,7 +9,7 @@
 int main() {
     
     List* ToDo = createList();
-    //List* Doing = createList();
+    List* Doing = createList();
     //List* Done = createList();
 
 
@@ -30,19 +30,23 @@ int main() {
             break;
         case 'b':
         case 'B':
-            printToDo(ToDo);
-            //taskToDoing(ToDo,Doing);
+            system("clear");
+            taskToDoing(ToDo,Doing);
             break;
         case 'c':
         case 'C':
-            //changeName(Doing);
+            system("clear");           
+            changeName(Doing);
             break;
         case 'd':
         case 'D':
+            system("clear");
+            printList(ToDo);
             //taskToDone(Doing,Done);
             break;
         case 'e':
         case 'E':
+            printNames(Doing);
             //taskToToDo(Done,ToDo);
             break;
         case 'f':

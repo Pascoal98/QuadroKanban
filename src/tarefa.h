@@ -24,14 +24,25 @@ typedef struct {
 }List;
 
 List* createList();
+
 int getDate(int dia, int mes, int ano);
 unsigned concatenate(unsigned x, unsigned y);
-void printToDo(List* list);
+
+void printList(List* list);
 void novaTarefa(List* list);
 void addTarefa(List* list, char des[]);
+
 void insertSortedPriority(List* list, Tarefa* tarefa);
+void deleteFromListId(List* list, int id);
+
+void insertSortedName(List* list, Tarefa* tarefa);
 void taskToDoing(List* ToDo, List* Doing);
+
 void changeName(List* Doing);
+void change(List* list,int id);
+
+void printNames(List* list);
+
 void taskToDone(List* Doing, List* Done);
 void taskToToDo(List* Done, List* ToDo) ;
 void viewBoard(List* ToDo, List* Doing, List* Done);
