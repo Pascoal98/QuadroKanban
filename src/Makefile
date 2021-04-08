@@ -5,9 +5,9 @@ EXECUTABLE = kanban
 
 all: $(EXECUTABLE)
 
-$(EXECUTABLE) : main.o tarefa.o file.o print.o
-		$(CC) -o $(EXECUTABLE) main.o tarefa.o file.o print.o
-		rm -f main.o tarefa.o fase.o file.o print.o
+$(EXECUTABLE) : main.o tarefa.o file.o list.o
+		$(CC) -o $(EXECUTABLE) main.o tarefa.o file.o list.o
+		rm -f main.o tarefa.o fase.o file.o list.o
 
 main.o: main.c
 	$(CC) $(CCFLAGS) main.c
@@ -18,8 +18,8 @@ tarefa.o: tarefa.c tarefa.h
 file.o: file.c file.h
 	$(CC) $(CCFLAGS) file.c
 
-print.o: print.c print.h
-	$(CC) $(CCFLAGS) print.c
+list.o: list.c list.h
+	$(CC) $(CCFLAGS) list.c
 
 clean:
-	rm -f main.o tarefa.o fase.o file.o print.o kanban
+	rm -f main.o tarefa.o fase.o file.o list.o kanban
