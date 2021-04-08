@@ -36,7 +36,7 @@ int main() {
     
     List* ToDo = createList();
     List* Doing = createList();
-    //List* Done = createList();
+    List* Done = createList();
 
     int loopMenu = 1;
     char opcao;
@@ -65,18 +65,20 @@ int main() {
         case 'd':
         case 'D':
             system("clear");
-            printList(ToDo);
-            //taskToDone(Doing,Done);
+            taskToDone(Doing,Done);
             break;
         case 'e':
         case 'E':
             system("clear");
-            printNames(Doing);
+            
             //taskToToDo(Done,ToDo);
             break;
         case 'f':
         case 'F':
             system("clear");
+            printList(ToDo);
+            printNames(Doing);
+            printList(Done);
             //viewBoard(ToDo,Doing,Done);
             break;
         case 'g':

@@ -90,6 +90,13 @@ void taskToDoing(List* list1, List* list2) {
     printf("Tarefa foi movida da lista ToDo para Doing.\n");
 }
 
+void taskToDone(List* list1, List* list2) {
+    int idaux;
+    printf("Qual é o id da tarefa que pertence mover?\n");
+    printIds(list1);
+    scanf("%d",&idaux);
+}
+
 void insertSortedPriority(List* list, Tarefa* tarefa) {
     
     Tarefa* curr = list->primeiro;
