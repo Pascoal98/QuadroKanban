@@ -2,9 +2,9 @@
 #include <stdlib.h>
 #include <string.h>
 
-#include "tarefa.h"
-#include "file.h"
 #include "list.h"
+#include "file.h"
+
 
 
 void printBanner() {

@@ -2,6 +2,7 @@
 #define LIST_H
 #include <stdio.h>
 #include "tarefa.h"
+#include "file.h"
 #define MAX_SIZE 6
 
 typedef struct {

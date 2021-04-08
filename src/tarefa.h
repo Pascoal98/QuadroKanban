@@ -4,7 +4,6 @@
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
-#include "file.h"
 
 #define NOME_BUFFER 256
 #define maxAno 2999
