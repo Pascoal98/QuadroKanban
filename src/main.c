@@ -94,7 +94,7 @@ int main() {
             break;
         case 'j':
         case 'J':
-            system("clear");
+
             printf("Saindo do programa...\n");
             loopMenu = 0;
             break;

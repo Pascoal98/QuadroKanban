@@ -37,7 +37,7 @@ void readDescTarefa(Tarefa* tarefa) {
     printf("Faça uma breve descrição da tarefa: ");
     getchar();
     fgets(des,sizeof(des),stdin);
-    des[strlen(des)-1] = '\0';
+    //des[strlen(des)-1] = '\0';
     strncpy(tarefa->descricao,des,NOME_BUFFER);
 }
 
@@ -53,11 +53,11 @@ void setPessoaTarefa(Tarefa* tarefa) {
 void setStartDate(Tarefa* tarefa) {
     int dia,mes,ano;
     printf("Introduza a data de inicio da tarefa - DD/MM/YYYY : ");
-    scanf("%d/%d/%d",&dia,&mes,&ano);
+    scanf("%d/%d/%d[^\n]",&dia,&mes,&ano);
             
     if(!getDate(dia,mes,ano)){
         printf("Data invália!Introduza uma nova data - DD/MM/YYYY : ");
-        scanf("%d/%d/%d",&dia,&mes,&ano);
+        scanf("%d/%d/%d[^\n]",&dia,&mes,&ano);
     }
     tarefa->dataCriacao=getDate(dia,mes,ano);
 }
@@ -65,11 +65,11 @@ void setStartDate(Tarefa* tarefa) {
 void setFinishDate(Tarefa* tarefa) {
     int dia,mes,ano;
     printf("Introduza a data em que concluiu a tarefa - DD/MM/YYYY : ");
-    scanf("%d/%d/%d",&dia,&mes,&ano);
+    scanf("%d/%d/%d[^\n]",&dia,&mes,&ano);
             
     if(!getDate(dia,mes,ano) && getDate(dia,mes,ano) < tarefa->dataCriacao && getDate(dia,mes,ano) > tarefa->dataLimite){
         printf("Data invália!Introduza uma nova data - DD/MM/YYYY : ");
-        scanf("%d/%d/%d",&dia,&mes,&ano);
+        scanf("%d/%d/%d[^\n]",&dia,&mes,&ano);
     }
     tarefa->dataConclusao=getDate(dia,mes,ano);
 }
@@ -77,11 +77,11 @@ void setFinishDate(Tarefa* tarefa) {
 void setLimitDate(Tarefa* tarefa) {
     int dia,mes,ano;
     printf("Introduza a data limite de conclusão - DD/MM/YYYY : ");
-    scanf("%d/%d/%d",&dia,&mes,&ano);
+    scanf("%d/%d/%d[^\n]",&dia,&mes,&ano);
             
     if(!getDate(dia,mes,ano) && getDate(dia,mes,ano) < tarefa->dataCriacao){
         printf("Data invália!Introduza uma nova data - DD/MM/YYYY : ");
-        scanf("%d/%d/%d",&dia,&mes,&ano);
+        scanf("%d/%d/%d[^\n]",&dia,&mes,&ano);
     }
     tarefa->dataLimite=getDate(dia,mes,ano);
 }

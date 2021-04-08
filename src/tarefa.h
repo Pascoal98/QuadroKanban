@@ -6,8 +6,6 @@
 #include <string.h>
 #include "file.h"
 
-
-#define MAX_SIZE 6
 #define NOME_BUFFER 256
 #define maxAno 2999
 #define minAno 2000

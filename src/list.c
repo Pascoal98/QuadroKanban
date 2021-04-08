@@ -24,7 +24,7 @@ void viewBoard(List* list1, List* list2, List* list3) {
         printDoing(list2);
         putchar('\n');
     }
-    if(list2->tamanho > 0 ){
+    if(list3->tamanho > 0 ){
         printf("###############DONE###############\n");
         printDone(list3);
         putchar('\n');
@@ -72,7 +72,7 @@ void novaTarefa(List* list) {
     tarefa->next = NULL;
     tarefa->id= manageId();
     printf("Introduza a prioridade: ");
-    scanf("%d", &tarefa->prioridade);
+    scanf("%d[^\n]", &tarefa->prioridade);
     setStartDate(tarefa);
     readDescTarefa(tarefa);
     if(list->tamanho == 0) {
@@ -92,7 +92,7 @@ void taskToDoing(List* list1, List* list2) {
         int idaux;
         printf("Qual é o id da tarefa que pertence mover?\n");
         printToDo(list1);
-        scanf("%d",&idaux);
+        scanf("%d[^\n]",&idaux);
         Tarefa* aux = searchUntil(list1,idaux);
         printf("%d\n",aux->id);
         if(aux == NULL) {
@@ -102,11 +102,11 @@ void taskToDoing(List* list1, List* list2) {
             setLimitDate(aux);
             if(list2->tamanho == 0) {
                 list2->primeiro = aux;
+                deleteFromListId(list1,aux->id);
                 aux->next = NULL;
-                deleteFromListId(list1,aux->id);
             } else {
-                insertSortedName(list2,aux);
                 deleteFromListId(list1,aux->id);
+                insertSortedName(list2,aux);
             }
             list1->tamanho--;
             list2->tamanho++;
@@ -120,7 +120,7 @@ void taskToDone(List* list1, List* list2) {
     int idaux;
     printf("Qual é o id da tarefa que pertence mover?\n");
     printDoing(list1);
-    scanf("%d",&idaux);
+    scanf("%d[^\n]",&idaux);
     Tarefa* aux = searchUntil(list1,idaux);
     printf("%d\n",aux->id);
     if(aux == NULL) {
@@ -132,8 +132,8 @@ void taskToDone(List* list1, List* list2) {
             aux->next = NULL;
             deleteFromListId(list1,aux->id);
         } else {
-            insertSortedDate(list2,aux);
             deleteFromListId(list1,aux->id);
+            insertSortedDate(list2,aux);
         }
         list1->tamanho--;
         list2->tamanho++;
@@ -289,13 +289,14 @@ void deleteFromListId(List* list, int id) {
         list->primeiro = curr->next;
         return;
     }
+    curr = curr->next;
     prev = list->primeiro;
     while(curr != NULL) {
         if(curr->id == id) {
             prev->next = curr->next;
             return;
         } else {
-            prev->next = curr;
+            prev = curr;
             curr = curr->next;
         }
     }
@@ -305,7 +306,7 @@ void changeName(List* list) {
     int idaux;
     printf("Qual é o id do nome da pessoa que pertence mudar?\n");
     printDoing(list);
-    scanf("%d",&idaux);
+    scanf("%d[^\n]",&idaux);
     changePerson(list,idaux);
 }
 
