@@ -70,7 +70,7 @@ int main() {
         case 'E':
             system("clear");
             
-            //taskToToDo(Done,ToDo);
+            taskToToDo(Done,ToDo);
             break;
         case 'f':
         case 'F':

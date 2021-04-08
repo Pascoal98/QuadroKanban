@@ -35,7 +35,7 @@ void printToDo(List* list) {
     for(Tarefa* curr = list->primeiro; curr != NULL ; curr = curr->next) {
         printf("Prioridade: %d\n",curr->prioridade);
         printf("Id: %d\n",curr->id);
-        printf("Descrição: %s\n",curr->descricao);
+        printf("Descrição: %s",curr->descricao);
         printf("Data de Inico: %d\n",curr->dataCriacao);
         putchar('\n');
     }
@@ -45,7 +45,7 @@ void printDoing(List* list) {
     for(Tarefa* curr = list->primeiro; curr != NULL ; curr = curr->next) {
         printf("Id: %d\n",curr->id);
         printf("Nome: %s\n",curr->pessoa);
-        printf("Descrição: %s\n",curr->descricao);
+        printf("Descrição: %s",curr->descricao);
         printf("Data Limite: %d\n",curr->dataLimite);
         putchar('\n');
     }
@@ -55,7 +55,7 @@ void printDone(List* list) {
     for(Tarefa* curr = list->primeiro; curr != NULL ; curr = curr->next) {
         printf("Id: %d\n",curr->id);
         printf("Nome: %s\n",curr->pessoa);
-        printf("Descrição: %s\n",curr->descricao);
+        printf("Descrição: %s",curr->descricao);
         printf("Data Conclusão: %d\n",curr->dataConclusao);
         putchar('\n');
     }
@@ -135,6 +135,31 @@ void taskToDone(List* list1, List* list2) {
         } else {
             deleteFromListId(list1,aux->id);
             insertSortedDate(list2,aux);
+        }
+        list1->tamanho--;
+        list2->tamanho++;
+        printf("Tarefa de id %d foi movida da lista Doing para Done.\n",aux->id);
+    }
+}
+
+void taskToToDo(List* list1, List* list2) {
+    int idaux;
+    printf("Qual é o id da tarefa que pertence mover?\n");
+    printDoing(list1);
+    scanf("%d[^\n]",&idaux);
+    Tarefa* aux = searchUntil(list1,idaux);
+    printf("%d\n",aux->id);
+    if(aux == NULL) {
+        printf("O id da tarefa que pretende reabrir não se encontra na lista Done.\n");
+    } else {
+        if(list2->tamanho == 0) {
+            list2->primeiro = aux;
+            aux->next = NULL;
+            deleteFromListId(list1,aux->id);
+            aux->next = NULL;
+        } else {
+            deleteFromListId(list1,aux->id);
+            insertSortedPriority(list2,aux);
         }
         list1->tamanho--;
         list2->tamanho++;
