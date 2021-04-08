@@ -22,9 +22,8 @@ void insertSortedDate(List* list, Tarefa* tarefa);
 Tarefa* searchUntil(List* list, int id);
 void deleteFromListId(List* list, int id);
 
-
 void changeName(List* Doing);
-void change(List* list,int id);
+void changePerson(List* list,int id);
 
 
 void viewBoard(List* ToDo, List* Doing, List* Done);

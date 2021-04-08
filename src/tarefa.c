@@ -67,7 +67,7 @@ void setFinishDate(Tarefa* tarefa) {
     printf("Introduza a data em que concluiu a tarefa - DD/MM/YYYY : ");
     scanf("%d/%d/%d",&dia,&mes,&ano);
             
-    if(!getDate(dia,mes,ano)){
+    if(!getDate(dia,mes,ano) && getDate(dia,mes,ano) < tarefa->dataCriacao && getDate(dia,mes,ano) > tarefa->dataLimite){
         printf("Data invália!Introduza uma nova data - DD/MM/YYYY : ");
         scanf("%d/%d/%d",&dia,&mes,&ano);
     }
@@ -79,7 +79,7 @@ void setLimitDate(Tarefa* tarefa) {
     printf("Introduza a data limite de conclusão - DD/MM/YYYY : ");
     scanf("%d/%d/%d",&dia,&mes,&ano);
             
-    if(!getDate(dia,mes,ano)){
+    if(!getDate(dia,mes,ano) && getDate(dia,mes,ano) < tarefa->dataCriacao){
         printf("Data invália!Introduza uma nova data - DD/MM/YYYY : ");
         scanf("%d/%d/%d",&dia,&mes,&ano);
     }
