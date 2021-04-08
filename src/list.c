@@ -15,19 +15,16 @@ List* createList() {
 
 void viewBoard(List* list1, List* list2, List* list3) {
     if(list1->tamanho > 0 ) {
-        printf("###############TO DO###############\n");
         printToDo(list1);
-        putchar('\n');
+        printf("###############TO DO###############\n");
     }
     if(list2->tamanho > 0 ){
-        printf("###############DOING###############\n");
         printDoing(list2);
-        putchar('\n');
+        printf("###############DOING###############\n");
     }
     if(list3->tamanho > 0 ){
-        printf("###############DONE###############\n");
         printDone(list3);
-        putchar('\n');
+        printf("###############DONE###############\n");
     }
 }
 
@@ -35,7 +32,7 @@ void printToDo(List* list) {
     for(Tarefa* curr = list->primeiro; curr != NULL ; curr = curr->next) {
         printf("Prioridade: %d\n",curr->prioridade);
         printf("Id: %d\n",curr->id);
-        printf("Descrição: %s",curr->descricao);
+        printf("Descrição: %s\n",curr->descricao);
         printf("Data de Inico: %d\n",curr->dataCriacao);
         putchar('\n');
     }
@@ -45,7 +42,7 @@ void printDoing(List* list) {
     for(Tarefa* curr = list->primeiro; curr != NULL ; curr = curr->next) {
         printf("Id: %d\n",curr->id);
         printf("Nome: %s\n",curr->pessoa);
-        printf("Descrição: %s",curr->descricao);
+        printf("Descrição: %s\n",curr->descricao);
         printf("Data Limite: %d\n",curr->dataLimite);
         putchar('\n');
     }
@@ -55,9 +52,38 @@ void printDone(List* list) {
     for(Tarefa* curr = list->primeiro; curr != NULL ; curr = curr->next) {
         printf("Id: %d\n",curr->id);
         printf("Nome: %s\n",curr->pessoa);
-        printf("Descrição: %s",curr->descricao);
+        printf("Descrição: %s\n",curr->descricao);
         printf("Data Conclusão: %d\n",curr->dataConclusao);
         putchar('\n');
+    }
+}
+
+void personTasks(List* list1, List* list2) {
+    printf("Qual é o nome da pessoa que deseja procurar?\n");
+    char pessoa[NOME_BUFFER];
+    getchar();
+    fgets(pessoa,sizeof(pessoa),stdin);
+    pessoa[strlen(pessoa)-1] = '\0';
+    int flag1 = 0, flag2 = 0;
+    for(Tarefa* curr = list1->primeiro; curr != NULL ; curr = curr->next) {
+        if(strcmp(pessoa,curr->pessoa) == 0) {
+            printf("Id: %d\n",curr->id);
+            printf("Descrição: %s\n",curr->descricao);
+            flag1 = 1;
+        }
+    }
+    if(flag1 == 1) {
+        printf("###############DOING###############\n");
+    }
+    for(Tarefa* curr = list2->primeiro; curr != NULL ; curr = curr->next) {
+        if(strcmp(pessoa,curr->pessoa) == 0) {
+            printf("Id: %d\n",curr->id);
+            printf("Descrição: %s\n",curr->descricao);
+            flag2 = 1;
+        }
+    }
+    if(flag2 == 1) {
+        printf("###############DONE###############\n");
     }
 }
 

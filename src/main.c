@@ -80,7 +80,7 @@ int main() {
         case 'g':
         case 'G':
             system("clear");   
-            //personTasks(Doing,Done);
+            personTasks(Doing,Done);
             break;
         case 'h':
         case 'H':
