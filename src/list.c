@@ -131,6 +131,7 @@ void taskToDone(List* list1, List* list2) {
             list2->primeiro = aux;
             aux->next = NULL;
             deleteFromListId(list1,aux->id);
+            aux->next = NULL;
         } else {
             deleteFromListId(list1,aux->id);
             insertSortedDate(list2,aux);
