@@ -13,27 +13,43 @@ List* createList() {
     return temp;
 }
 
-void printList(List* list) {
+void viewBoard(List* list1, List* list2, List* list3) {
+    printf("###############TO DO###############\n");
+    printToDo(list1);
+    printf("###############DOING###############\n");
+    printDoing(list2);
+    printf("###############DONE###############\n");
+    printDone(list3);
+    putchar('\n');
+}
+
+void printToDo(List* list) {
     for(Tarefa* curr = list->primeiro; curr != NULL ; curr = curr->next) {
         printf("Prioridade: %d\n",curr->prioridade);
         printf("Id: %d\n",curr->id);
         printf("Descrição: %s\n",curr->descricao);
+        printf("Data de Inico: %d\n",curr->dataCriacao);
+        putchar('\n');
     }
 }
 
-void printIds(List* list) {
-    for(Tarefa* curr = list->primeiro; curr != NULL ; curr = curr->next) {
-        printf("Id: %d\n",curr->id);
-        printf("Descrição: %s\n",curr->descricao);
-        printf("---------------------------------\n");
-    }
-}
-
-void printNames(List* list) {
+void printDoing(List* list) {
     for(Tarefa* curr = list->primeiro; curr != NULL ; curr = curr->next) {
         printf("Id: %d\n",curr->id);
         printf("Nome: %s\n",curr->pessoa);
-        printf("---------------------------------\n");
+        printf("Descrição: %s\n",curr->descricao);
+        printf("Data Limite: %d\n",curr->dataLimite);
+        putchar('\n');
+    }
+}
+
+void printDone(List* list) {
+    for(Tarefa* curr = list->primeiro; curr != NULL ; curr = curr->next) {
+        printf("Id: %d\n",curr->id);
+        printf("Nome: %s\n",curr->pessoa);
+        printf("Descrição: %s\n",curr->descricao);
+        printf("Data Conclusão: %d\n",curr->dataConclusao);
+        putchar('\n');
     }
 }
 
@@ -67,34 +83,47 @@ void taskToDoing(List* list1, List* list2) {
     } else {
         int idaux;
         printf("Qual é o id da tarefa que pertence mover?\n");
-        printIds(list1);
+        printToDo(list1);
         scanf("%d",&idaux);
         Tarefa* aux = searchUntil(list1,idaux);
         if(aux == NULL) {
             printf("O id que selecionou não tem tarefa no ToDo.\n");
-            exit(1);
         } else {
             setPessoaTarefa(aux);
             setLimitDate(aux);
             if(list2->tamanho == 0) {
                 list2->primeiro = aux;
-            }
-            else {
+            } else {
                 insertSortedName(list2,aux);
             }
             deleteFromListId(list1,aux->id);
             list1->tamanho--;
             list2->tamanho++;
+            printf("Tarefa de id %d foi movida da lista ToDo para Doing.\n",aux->id);
         }   
     }
-    printf("Tarefa foi movida da lista ToDo para Doing.\n");
 }
 
 void taskToDone(List* list1, List* list2) {
     int idaux;
     printf("Qual é o id da tarefa que pertence mover?\n");
-    printIds(list1);
+    printDoing(list1);
     scanf("%d",&idaux);
+    Tarefa* aux = searchUntil(list1,idaux);
+    if(aux == NULL) {
+        printf("O id que selecionou não tem tarefa no Doing.\n");
+    } else {
+        setFinishDate(aux);
+        if(list2->tamanho == 0) {
+            list2->primeiro = aux;
+        } else {
+            insertSortedDate(list2,aux);
+        }
+        deleteFromListId(list1,aux->id);
+        list1->tamanho--;
+        list2->tamanho++;
+        printf("Tarefa de id %d foi movida da lista Doing para Done.\n",aux->id);
+    }
 }
 
 void insertSortedPriority(List* list, Tarefa* tarefa) {
@@ -125,8 +154,13 @@ void insertSortedPriority(List* list, Tarefa* tarefa) {
                     last->next = tarefa;
                     return;
                 }
-            }
-        } else {
+            } 
+        }else 
+            if(curr->next == NULL){
+                tarefa->next = NULL;
+                curr->next = tarefa;
+                return;
+        }else {
             last = curr;
             curr = curr->next;
         }
@@ -162,6 +196,52 @@ void insertSortedName(List* list, Tarefa* tarefa) {
                     return;
                 }
             }
+        }else 
+            if(curr->next == NULL){
+                tarefa->next = NULL;
+                curr->next = tarefa;
+                return;
+        } else {
+            last = curr;
+            curr = curr->next;
+        }
+    }
+}
+
+void insertSortedDate(List* list, Tarefa* tarefa) {
+    
+    Tarefa* curr = list->primeiro;
+    Tarefa* last = NULL;
+
+    while(curr != NULL) {
+        if(tarefa->dataConclusao < curr->dataConclusao){
+            if(last == NULL){
+                tarefa->next = list->primeiro;
+                list->primeiro = tarefa;
+                return;
+            } else {
+                tarefa->next = last->next;
+                last->next = tarefa;
+                return;
+            }
+        }else 
+        if(tarefa->dataConclusao == curr->dataConclusao) {
+            if(tarefa->dataCriacao < curr->dataCriacao) {
+                if(last == NULL) {
+                    tarefa->next = list->primeiro;
+                    list->primeiro = tarefa;
+                    return;
+                } else {
+                    tarefa->next = last->next;
+                    last->next = tarefa;
+                    return;
+                }
+            }
+        }else 
+            if(curr->next == NULL){
+                tarefa->next = NULL;
+                curr->next = tarefa;
+                return;
         } else {
             last = curr;
             curr = curr->next;
@@ -209,7 +289,7 @@ void deleteFromListId(List* list, int id) {
 void changeName(List* list) {
     int idaux;
     printf("Qual é o id do nome da pessoa que pertence mudar?\n");
-    printNames(list);
+    printDoing(list);
     scanf("%d",&idaux);
     change(list,idaux);
 }

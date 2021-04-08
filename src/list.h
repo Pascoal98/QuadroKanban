@@ -9,15 +9,16 @@ typedef struct {
 }List;
 
 List* createList();
-void printList(List* list);
-void printIds(List* list);
-void printNames(List* list);
+void printToDo(List* list);
+void printDoing(List* list);
+void printDone(List* list);
 void novaTarefa(List* list);
 void taskToDoing(List* ToDo, List* Doing);
 void taskToDone(List* Doing, List* Done);
 void taskToToDo(List* Done, List* ToDo);
 void insertSortedPriority(List* list, Tarefa* tarefa);
 void insertSortedName(List* list, Tarefa* tarefa);
+void insertSortedDate(List* list, Tarefa* tarefa);
 Tarefa* searchUntil(List* list, int id);
 void deleteFromListId(List* list, int id);
 

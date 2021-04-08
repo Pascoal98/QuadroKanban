@@ -8,8 +8,8 @@ unsigned concatenate(unsigned x, unsigned y) {
 }
 
 int getDate(int dia, int mes, int ano){
-    int aux= concatenate(dia,mes);
-    int data =concatenate(aux,ano);
+    int aux= concatenate(ano,mes);
+    int data = concatenate(aux,dia);
     if(ano>=minAno && ano<=maxAno){
         if(mes>=1 && mes<=12){
             if((dia>=1 && dia<=31) && (mes==1 || mes==3 || mes==5 || mes==7 || mes==8 || mes==10 || mes==12))
@@ -46,6 +46,7 @@ void setPessoaTarefa(Tarefa* tarefa) {
     char pessoa[NOME_BUFFER];
     getchar();
     fgets(pessoa,sizeof(pessoa),stdin);
+    pessoa[strlen(pessoa)-1] = '\0';
     strncpy(tarefa->pessoa,pessoa,NOME_BUFFER);
 }
 

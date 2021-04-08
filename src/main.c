@@ -76,10 +76,7 @@ int main() {
         case 'f':
         case 'F':
             system("clear");
-            printList(ToDo);
-            printNames(Doing);
-            printList(Done);
-            //viewBoard(ToDo,Doing,Done);
+            viewBoard(ToDo,Doing,Done);
             break;
         case 'g':
         case 'G':
