@@ -31,7 +31,7 @@ void printOptions() {
     printf("h)Visualizar todas as tarefas ordenadas por data de criação;\n");
     printf("i)Carregar os ficheiros;\n");
     printf("j)Guardar progresso.\n");
-    printf("k)Sair.\n");
+    printf("k)Guardar e Sair.\n");
 }
 
 int main() {
@@ -92,7 +92,7 @@ int main() {
         case 'i':
         case 'I':
             system("clear");
-            //loadFiles(ToDo,Doing,Done);
+            loadFiles(ToDo,Doing,Done);
             break;
 
         case 'j':
@@ -102,7 +102,9 @@ int main() {
             break;
         case 'k':
         case 'K':
-
+            system("clear");
+            printf("Guardando listas...\n");
+            saveLists(ToDo,Doing,Done);
             printf("Saindo do programa...\n");
             loopMenu = 0;
             break;

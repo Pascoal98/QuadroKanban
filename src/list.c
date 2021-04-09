@@ -474,3 +474,77 @@ void viewTasksCrono(List* list1, List* list2, List* list3) {
         printf("Data de Criação: %d\n",array[j].dataCriacao);
     }
 }
+
+void addToDo(List* list, int prio, int id, char des[], int dataCriacao) {
+    
+    Tarefa* tarefa = malloc(sizeof(Tarefa));
+
+    if(tarefa == NULL) {
+        printf("Erro a alocar a tarefa em memoria.\n");
+        exit(1);
+    }
+
+    tarefa->prioridade = prio;
+    tarefa->id = id;
+    strncpy(tarefa->descricao,des,NOME_BUFFER);
+    tarefa->dataCriacao = dataCriacao;
+    tarefa->next = NULL;
+
+    if(list->tamanho == 0) {
+        list->primeiro = tarefa;
+    } else {
+        insertSortedPriority(list,tarefa);
+    }
+    list->tamanho++;
+}
+
+void addDoing(List* list, int prio, int id, char des[], int dataCriacao, char pessoa[], int dataLimite) {
+    
+    Tarefa* tarefa = malloc(sizeof(Tarefa));
+
+    if(tarefa == NULL) {
+        printf("Erro a alocar a tarefa em memoria.\n");
+        exit(1);
+    }
+
+    tarefa->prioridade = prio;
+    tarefa->id = id;
+    strncpy(tarefa->descricao,des,NOME_BUFFER);
+    tarefa->dataCriacao = dataCriacao;
+    strncpy(tarefa->pessoa,pessoa,NOME_BUFFER);
+    tarefa->dataLimite = dataLimite;
+    tarefa->next = NULL;
+
+    if(list->tamanho == 0) {
+        list->primeiro = tarefa;
+    } else {
+        insertSortedName(list,tarefa);
+    }
+    list->tamanho++;
+}
+
+void addDone(List* list, int prio, int id, char des[], int dataCriacao, char pessoa[], int dataLimite, int dataConclusao) {
+    
+    Tarefa* tarefa = malloc(sizeof(Tarefa));
+
+    if(tarefa == NULL) {
+        printf("Erro a alocar a tarefa em memoria.\n");
+        exit(1);
+    }
+
+    tarefa->prioridade = prio;
+    tarefa->id = id;
+    strncpy(tarefa->descricao,des,NOME_BUFFER);
+    tarefa->dataCriacao = dataCriacao;
+    strncpy(tarefa->pessoa,pessoa,NOME_BUFFER);
+    tarefa->dataLimite = dataLimite;
+    tarefa->dataConclusao = dataConclusao;
+    tarefa->next = NULL;
+
+    if(list->tamanho == 0) {
+        list->primeiro = tarefa;
+    } else {
+        insertSortedDate(list,tarefa);
+    }
+    list->tamanho++;
+}
