@@ -1,5 +1,6 @@
 #include "list.h"
 
+/*cria uma lista vazia*/
 List* createList() {
 
     List* temp = malloc(sizeof(List));
@@ -12,6 +13,7 @@ List* createList() {
     return temp;
 }
 
+/*mostra o Quadro de Kanban*/
 void viewBoard(List* list1, List* list2, List* list3) {
     if(list1->tamanho > 0 ) {
         printToDo(list1);
@@ -27,6 +29,7 @@ void viewBoard(List* list1, List* list2, List* list3) {
     }
 }
 
+/*Printa as tarefas em ToDo*/
 void printToDo(List* list) {
     for(Tarefa* curr = list->primeiro; curr != NULL ; curr = curr->next) {
         printf("Prioridade: %d\n",curr->prioridade);
@@ -37,6 +40,7 @@ void printToDo(List* list) {
     }
 }
 
+/*Printa as tarefas em Doing*/
 void printDoing(List* list) {
     for(Tarefa* curr = list->primeiro; curr != NULL ; curr = curr->next) {
         printf("Id: %d\n",curr->id);
@@ -47,6 +51,7 @@ void printDoing(List* list) {
     }
 }
 
+/*Printa as tarefas em Done*/
 void printDone(List* list) {
     for(Tarefa* curr = list->primeiro; curr != NULL ; curr = curr->next) {
         printf("Id: %d\n",curr->id);
@@ -57,6 +62,7 @@ void printDone(List* list) {
     }
 }
 
+/*Printa as tarefas em que a pessoa escolhida trabalha/trabalhou*/
 void personTasks(List* list1, List* list2) {
     printf("Qual é o nome da pessoa que deseja procurar?\n");
     char pessoa[NOME_BUFFER];
@@ -86,6 +92,7 @@ void personTasks(List* list1, List* list2) {
     }
 }
 
+/*cria uma nova tarefa e adiciona em ToDo*/
 void novaTarefa(List* list) {
     Tarefa* tarefa = malloc(sizeof(Tarefa));
 
@@ -109,6 +116,7 @@ void novaTarefa(List* list) {
     system("clear");
 }
 
+/*Passa a tarefa de ToDo para Doing, se tiver cheia nao deixa adicionar e volta para o menu inicial*/
 void taskToDoing(List* list1, List* list2) {
     if(list2->tamanho == MAX_SIZE) {
         printf("A lista está cheia, por favor acabe uma tarefa antes de adicionar outra.\n");
@@ -139,7 +147,7 @@ void taskToDoing(List* list1, List* list2) {
     }
 }
 
-
+/*adiciona tarefa de Doing para Done*/
 void taskToDone(List* list1, List* list2) {
     int idaux;
     printf("Qual é o id da tarefa que pertence mover?\n");
@@ -166,6 +174,7 @@ void taskToDone(List* list1, List* list2) {
     }
 }
 
+/*Reabre uma tarefa, insere uma prioridade nova e passa para ToDo*/
 void taskToToDo(List* list1, List* list2) {
     int idaux;
     printf("Qual é o id da tarefa que pertence mover?\n");
@@ -192,6 +201,7 @@ void taskToToDo(List* list1, List* list2) {
     }
 }
 
+/*insere na lista por prioridade*/
 void insertSortedPriority(List* list, Tarefa* tarefa) {
     
     Tarefa* curr = list->primeiro;
@@ -262,6 +272,7 @@ void insertSortedPriority(List* list, Tarefa* tarefa) {
     }
 }
 
+/*insere na lista por ordem alfabetica*/
 void insertSortedName(List* list, Tarefa* tarefa) {
     
     Tarefa* curr = list->primeiro;
@@ -303,6 +314,7 @@ void insertSortedName(List* list, Tarefa* tarefa) {
     }
 }
 
+/*insere na lista por data de conclusao*/
 void insertSortedDate(List* list, Tarefa* tarefa) {
     
     Tarefa* curr = list->primeiro;
@@ -344,6 +356,7 @@ void insertSortedDate(List* list, Tarefa* tarefa) {
     }
 }
 
+/*funcao para procurar uma tarefa pelo id e retornar a mesma*/
 Tarefa* searchUntil(List* list, int id) {
         
     Tarefa* curr = list->primeiro;
@@ -357,6 +370,7 @@ Tarefa* searchUntil(List* list, int id) {
     return NULL;
 }
 
+/*remove uma tarefa de uma lista atraves do id*/
 void deleteFromListId(List* list, int id) {
         
     Tarefa* curr = list->primeiro;
@@ -382,6 +396,7 @@ void deleteFromListId(List* list, int id) {
     }
 }
 
+/*funcao para mudar o nome da pessoa responsavel*/
 void changeName(List* list) {
     int idaux;
     printf("Qual é o id do nome da pessoa que pertence mudar?\n");
@@ -412,6 +427,7 @@ void changePerson(List* list, int id) {
     }
 }
 
+/*funcao para comparar data de criaçao*/
 int compareDates(const void *a, const void *b) {
     Tarefa *t1 = (Tarefa *)a;
     Tarefa *t2 = (Tarefa *)b;
@@ -425,6 +441,7 @@ int compareDates(const void *a, const void *b) {
     return 0;
 }
 
+/*funcao para ver cronologicamente*/
 void viewTasksCrono(List* list1, List* list2, List* list3) {
 
     int size = list1->tamanho + list2->tamanho + list3->tamanho;
@@ -476,6 +493,7 @@ void viewTasksCrono(List* list1, List* list2, List* list3) {
     }
 }
 
+/*funcao para adicionar ao ToDo atraves de uma ficheiro*/
 void addToDo(List* list, int prio, int id, char des[], int dataCriacao) {
     
     Tarefa* tarefa = malloc(sizeof(Tarefa));
@@ -499,6 +517,7 @@ void addToDo(List* list, int prio, int id, char des[], int dataCriacao) {
     list->tamanho++;
 }
 
+/*funcao para adicionar ao Doing atraves de uma ficheiro*/
 void addDoing(List* list, int prio, int id, char des[], int dataCriacao, char pessoa[], int dataLimite) {
     
     Tarefa* tarefa = malloc(sizeof(Tarefa));
@@ -524,6 +543,7 @@ void addDoing(List* list, int prio, int id, char des[], int dataCriacao, char pe
     list->tamanho++;
 }
 
+/*funcao para adicionar ao Done atraves de uma ficheiro*/
 void addDone(List* list, int prio, int id, char des[], int dataCriacao, char pessoa[], int dataLimite, int dataConclusao) {
     
     Tarefa* tarefa = malloc(sizeof(Tarefa));

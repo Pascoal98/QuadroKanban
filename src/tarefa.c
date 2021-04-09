@@ -31,7 +31,7 @@ int getDate(int dia, int mes, int ano){
         return 0;
     } 
 }
-
+/*ler descriçao de input e liga a tarefa*/
 void readDescTarefa(Tarefa* tarefa) {
     char des[NOME_BUFFER];
     printf("Faça uma breve descrição da tarefa: ");
@@ -41,6 +41,7 @@ void readDescTarefa(Tarefa* tarefa) {
     strncpy(tarefa->descricao,des,NOME_BUFFER);
 }
 
+/*adiciona o nome da pessoa responsavel a tarefa*/
 void setPessoaTarefa(Tarefa* tarefa) {
     printf("Quem é a pessoa responsável por esta tarefa?\n");
     char pessoa[NOME_BUFFER];
@@ -50,6 +51,7 @@ void setPessoaTarefa(Tarefa* tarefa) {
     strncpy(tarefa->pessoa,pessoa,NOME_BUFFER);
 }
 
+/*adiciona data de inicio do tarefa*/
 void setStartDate(Tarefa* tarefa) {
     int dia,mes,ano;
     printf("Introduza a data de inicio da tarefa - DD/MM/YYYY : ");
@@ -62,6 +64,7 @@ void setStartDate(Tarefa* tarefa) {
     tarefa->dataCriacao=getDate(dia,mes,ano);
 }
 
+/*adiciona data de conclusao*/
 void setFinishDate(Tarefa* tarefa) {
     int dia,mes,ano;
     printf("Introduza a data em que concluiu a tarefa - DD/MM/YYYY : ");
@@ -73,7 +76,7 @@ void setFinishDate(Tarefa* tarefa) {
     }
     tarefa->dataConclusao=getDate(dia,mes,ano);
 }
-
+ /*adiciona data ate quando a tarefa tem que acabar*/
 void setLimitDate(Tarefa* tarefa) {
     int dia,mes,ano;
     printf("Introduza a data limite de conclusão - DD/MM/YYYY : ");
@@ -86,6 +89,7 @@ void setLimitDate(Tarefa* tarefa) {
     tarefa->dataLimite=getDate(dia,mes,ano);
 }
 
+/*adiciona prioridade da tarefa*/
 void setPriority(Tarefa* tarefa) {
     int prio;
     printf("Introduza a prioridade: ");

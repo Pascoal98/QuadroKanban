@@ -1,5 +1,7 @@
 #include "file.h"
 
+
+/*cria ficheiro id.txt se nao existir, a unica funçao é ir buscar o id para a tarefa, iterando sempre que for acrescentando*/
 int manageId() {
     FILE *fp = fopen("id.txt","r");
     int id;
@@ -19,6 +21,8 @@ int manageId() {
         return id;
     }
 }
+
+/*Dá load aos files, se o file nao existir cria um em branco*/
 
 void loadFiles(struct list* ToDo, struct list* Doing, struct list* Done) {
     FILE *data;
@@ -85,6 +89,8 @@ void loadFiles(struct list* ToDo, struct list* Doing, struct list* Done) {
         fclose(data);
     }
 }
+
+/*Guarda as listas num ficheiro txt, só cria se existir elementos nas listas*/
 
 void saveLists(struct list* ToDo, struct list* Doing, struct list* Done) {
     FILE *fp;
