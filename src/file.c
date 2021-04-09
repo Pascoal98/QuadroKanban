@@ -24,7 +24,10 @@ void loadFiles(struct list* ToDo, struct list* Doing, struct list* Done) {
     FILE *data;
 
     data = fopen("ToDo.txt","r");
-    if(data != NULL) {
+    if(data == NULL) {
+        data = fopen("ToDo.txt","w");
+        fclose(data);
+    }else {
         int nToDo;
         fscanf(data,"%d[^\n]",&nToDo);
         for(int i = 0; i < nToDo; i++) {
@@ -36,10 +39,13 @@ void loadFiles(struct list* ToDo, struct list* Doing, struct list* Done) {
             fscanf(data,"%d[^\n]",&dataCriacao);
             addToDo(ToDo,prio,id,des,dataCriacao);
         }
+        fclose(data);
     }
-    fclose(data);
     data = fopen("Doing.txt","r");
-    if(data != NULL) {
+    if(data == NULL) {
+        data = fopen("Doing.txt","w");
+        fclose(data);
+    }else{
         int nDoing;
         fscanf(data,"%d[^\n]",&nDoing);
         for(int i = 0; i < nDoing; i++) {
@@ -54,10 +60,13 @@ void loadFiles(struct list* ToDo, struct list* Doing, struct list* Done) {
             fscanf(data,"%d[^\n]",&dataLimite);
             addDoing(Doing,prio,id,des,dataCriacao,pessoa,dataLimite);
         }
+        fclose(data);
     }
-    fclose(data);
     data = fopen("Done.txt","r");
-    if(data != NULL) {
+    if(data == NULL) {
+        data = fopen("Done.txt","w");
+        fclose(data);
+    }else {
         int nDone;
         fscanf(data,"%d[^\n]",&nDone);
         for(int i = 0; i < nDone; i++) {
@@ -73,8 +82,8 @@ void loadFiles(struct list* ToDo, struct list* Doing, struct list* Done) {
             fscanf(data,"%d[^\n]",&dataConclusao);
             addDone(Done,prio,id,des,dataCriacao,pessoa,dataLimite,dataConclusao);
         }
+        fclose(data);
     }
-    fclose(data);
 }
 
 void saveLists(struct list* ToDo, struct list* Doing, struct list* Done) {
