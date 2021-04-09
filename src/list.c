@@ -1,6 +1,5 @@
 #include "list.h"
 
-
 List* createList() {
 
     List* temp = malloc(sizeof(List));

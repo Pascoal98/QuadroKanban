@@ -5,7 +5,7 @@
 #include "file.h"
 #define MAX_SIZE 6
 
-typedef struct {
+typedef struct list{
     int tamanho;
     Tarefa* primeiro;
 }List;

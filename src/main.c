@@ -2,6 +2,7 @@
 #include <stdlib.h>
 #include <string.h>
 
+
 #include "list.h"
 #include "file.h"
 
@@ -29,7 +30,8 @@ void printOptions() {
     printf("g)Visualizar todas as tarefas de uma pessoa;\n");
     printf("h)Visualizar todas as tarefas ordenadas por data de criação;\n");
     printf("i)Carregar os ficheiros;\n");
-    printf("j)Sair.\n");
+    printf("j)Guardar progresso.\n");
+    printf("k)Sair.\n");
 }
 
 int main() {
@@ -92,8 +94,14 @@ int main() {
             system("clear");
             //loadFiles(ToDo,Doing,Done);
             break;
+
         case 'j':
         case 'J':
+            system("clear");
+            saveLists(ToDo,Doing,Done);
+            break;
+        case 'k':
+        case 'K':
 
             printf("Saindo do programa...\n");
             loopMenu = 0;
