@@ -94,7 +94,7 @@ void saveLists(struct list* ToDo, struct list* Doing, struct list* Done) {
         for(Tarefa* curr = ToDo->primeiro; curr != NULL ; curr = curr->next) {
             fprintf(fp,"%d\n",curr->prioridade);
             fprintf(fp,"%d\n",curr->id);
-            fprintf(fp,"%s",curr->descricao);
+            fprintf(fp,"%s\n",curr->descricao);
             fprintf(fp,"%d\n",curr->dataCriacao);
         }
         fclose(fp);
@@ -105,7 +105,7 @@ void saveLists(struct list* ToDo, struct list* Doing, struct list* Done) {
         for(Tarefa* curr = Doing->primeiro; curr != NULL ; curr = curr->next) {
             fprintf(fp,"%d\n",curr->prioridade);
             fprintf(fp,"%d\n",curr->id);
-            fprintf(fp,"%s",curr->descricao);
+            fprintf(fp,"%s\n",curr->descricao);
             fprintf(fp,"%d\n",curr->dataCriacao);
             fprintf(fp,"%s\n",curr->pessoa);
             fprintf(fp,"%d\n",curr->dataLimite);
@@ -118,7 +118,7 @@ void saveLists(struct list* ToDo, struct list* Doing, struct list* Done) {
         for(Tarefa* curr = Done->primeiro; curr != NULL ; curr = curr->next) {
             fprintf(fp,"%d\n",curr->prioridade);
             fprintf(fp,"%d\n",curr->id);
-            fprintf(fp,"%s",curr->descricao);
+            fprintf(fp,"%s\n",curr->descricao);
             fprintf(fp,"%d\n",curr->dataCriacao);
             fprintf(fp,"%s\n",curr->pessoa);
             fprintf(fp,"%d\n",curr->dataLimite);

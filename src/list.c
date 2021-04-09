@@ -183,11 +183,12 @@ void taskToToDo(List* list1, List* list2) {
             aux->next = NULL;
         } else {
             deleteFromListId(list1,aux->id);
+            setPriority(aux);
             insertSortedPriority(list2,aux);
         }
         list1->tamanho--;
         list2->tamanho++;
-        printf("Tarefa de id %d foi movida da lista Doing para Done.\n",aux->id);
+        printf("Tarefa de id %d foi movida da lista Done para ToDo.\n",aux->id);
     }
 }
 
